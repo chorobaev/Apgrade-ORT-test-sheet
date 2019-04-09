@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Apgrate</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="intro_first_message">Introduction 1</string>
+    <string name="intro_second_message">Introduction 2</string>
+    <string name="intro_third_message">Introduction 3</string>
+    <string name="intro_fourth_message">Introduction 4</string>
+
+    <string name="menu_item_tests">Tests</string>
+    <string name="menu_item_rating">Rating</string>
+    <string name="menu_item_admin">Admin</string>
+    <string name="menu_item_exit">Exit</string>
+    <string name="menu_section_others">Other</string>
+
+</resources>
