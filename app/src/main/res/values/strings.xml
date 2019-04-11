@@ -17,5 +17,20 @@
     <string name="menu_item_admin">Admin</string>
     <string name="menu_item_exit">Exit</string>
     <string name="menu_section_others">Other</string>
+    <string name="signup_msg_information">Enter the secret key in order to use this app or try one more test.</string>
+    <string name="signup_btn_signup">Sign up</string>
+    <string name="signup_et_hint_keyword">keyword</string>
+    <string name="singup_msg_get_access_expo">Don’t you have a password?</string>
+    <string name="signup_msg_get_keyword_clickable">Get access keyword</string>
+    <string name="signup_msg_try_free">Try for free.</string>
+    <string name="signup_et_surename">surename</string>
+    <string name="signup_et_name">name</string>
+    <string name="signup_et_region">region</string>
+    <string name="signup_et_school">school</string>
+    <string name="signup_btn_next">next</string>
+
+    <string name="toast_empty_key">Please enter a key.</string>
+    <string name="toast_empty_entries">Please fill all fields.</string>
+    <string name="toast_not_valid_key">Keyword is not exist</string>
 
 </resources>

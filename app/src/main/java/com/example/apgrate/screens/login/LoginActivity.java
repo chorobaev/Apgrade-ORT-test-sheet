@@ -1,15 +1,34 @@
 package com.example.apgrate.screens.login;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.apgrate.R;
 import com.example.apgrate.utils.BaseActivity;
+import com.example.apgrate.utils.CommonUtils;
+
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 
 public class LoginActivity extends BaseActivity {
+
+    private LoginViewModel mViewModle;
+    public SignupFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mViewModle = ViewModelProviders.of(this).get(LoginViewModel.class);
+        fragment = new SignupFragment();
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, fragment).commit();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        CommonUtils.closeApp(this);
     }
 }

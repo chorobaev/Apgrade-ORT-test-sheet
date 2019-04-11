@@ -7,4 +7,6 @@
     <color name="colorAppMain">#43a047</color>
     <color name="colorAppMainDark">#367937</color>
     <color name="colorWhite">#fff</color>
+    <color name="colorBlack">#000</color>
+    <color name="colorBlue">#2196F3</color>
 </resources>

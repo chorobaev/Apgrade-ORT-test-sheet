@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.apgrate.R;
+import com.example.apgrate.utils.CommonUtils;
 import com.github.paolorotolo.appintro.AppIntro;
 
 import androidx.annotation.Nullable;
@@ -35,10 +36,6 @@ public class IntroActivity extends AppIntro {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        CommonUtils.closeApp(this);
     }
 }
