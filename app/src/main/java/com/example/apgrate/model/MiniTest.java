@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class MiniTest {
 
-    enum Category {MATH_1, MATH_2, LANGUAGE_1, LANGUAGE_2, LANGUAGE_3}
+    public enum Category {MATH_1, MATH_2, LANGUAGE_1, LANGUAGE_2, LANGUAGE_3}
     private int id;
-    private int category;
+    private Category category;
     private ArrayList<Question> questions;
 
-    public MiniTest(int category, ArrayList<Question> questions) {
+    public MiniTest(Category category, ArrayList<Question> questions) {
         this.category = category;
         this.questions = questions;
     }
@@ -18,11 +18,11 @@ public class MiniTest {
         return questions.size();
     }
 
-    public int getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(int category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

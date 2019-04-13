@@ -6,8 +6,8 @@ import java.util.Date;
 public class User {
 
     private String uid;
-    private String firstName;
-    private String sureName;
+    private String firstname;
+    private String surname;
     private String region;
     private String school;
     private String username;
@@ -16,15 +16,15 @@ public class User {
     private Date createdAt;
 
     public User(String firstName, String sureName) {
-        this.firstName = firstName;
-        this.sureName = sureName;
+        this.firstname = firstName;
+        this.surname = surname;
         this.username = firstName + "." + sureName + "@apgrade.kg";
         this.createdAt = new Date();
     }
 
     public User(String firstName, String sureName, String region, String school) {
-        this.firstName = firstName;
-        this.sureName = sureName;
+        this.firstname = firstName;
+        this.surname = sureName;
         this.region = region;
         this.school = school;
         this.username = firstName + "." + sureName + "@apgrade.kg";
@@ -47,20 +47,20 @@ public class User {
         this.uid = uid;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstName) {
+        this.firstname = firstName;
     }
 
-    public String getSureName() {
-        return sureName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setSureName(String sureName) {
-        this.sureName = sureName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getRegion() {

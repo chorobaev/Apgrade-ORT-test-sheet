@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData;
 public interface FirebaseUserRepository {
 
     LiveData<User> getCurrentUser();
-    LiveData<User> getUserById(int uid);
+    User getUserById(String uid);
     LiveData<DataSnapshot> getKeyValid(String key);
     void registerUser(User user, String keyword);
     void signInUser(String keyword);

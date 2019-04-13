@@ -8,7 +8,9 @@ import com.example.apgrate.data.firebase.UserRepository;
 import com.example.apgrate.model.User;
 import com.example.apgrate.screens.introduction.IntroActivity;
 import com.example.apgrate.screens.introduction.IntroFragment;
+import com.example.apgrate.screens.login.FillupFragment;
 import com.example.apgrate.screens.login.LoginActivity;
+import com.example.apgrate.screens.test.TestActivity;
 import com.example.apgrate.utils.CommonUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -23,6 +25,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -35,6 +39,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -45,6 +51,11 @@ public class MainActivity extends AppCompatActivity
 
         checkAuthentication();
         checkFirstRun();
+
+        Intent intent = new Intent(this, TestActivity.class);
+        startActivity(intent);
+
+        //onNavigationItemSelected(findViewById(R.menu.n));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -93,17 +104,17 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NotNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_tests) {
+            transaction.replace(R.id.cl_container, new TestsFragment()).commit();
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_rating) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_exit) {
 
         }
 

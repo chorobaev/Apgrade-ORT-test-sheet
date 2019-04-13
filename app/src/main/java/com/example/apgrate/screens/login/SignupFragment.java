@@ -35,7 +35,7 @@ public class SignupFragment extends Fragment {
         } else {
             throw new NullPointerException("Fragment is not hosted");
         }
-        mViewModel = ViewModelProviders.of(getActivity()).get(LoginViewModel.class);
+        mViewModel = ViewModelProviders.of(mActivity).get(LoginViewModel.class);
     }
 
     @Nullable

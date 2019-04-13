@@ -19,7 +19,7 @@ class LoginViewModel extends ViewModel {
     private final UserRepository userRepository = new UserRepository();
 
     void setKeyword(String keyword) {
-    this.keyword.setValue(keyword);
+        this.keyword.setValue(keyword);
     }
 
     LiveData<DataSnapshot> getKeyValidation() {

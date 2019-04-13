@@ -3,11 +3,9 @@ package com.example.apgrate.model;
 public class Question {
 
     private int id;
-    private int order;
     private int correctAnswer;
 
-    public Question(int order, int correctAnswer, int marks) {
-        this.order = order;
+    public Question(int correctAnswer, int marks) {
         this.correctAnswer = correctAnswer;
         this.marks = marks;
     }
@@ -20,14 +18,6 @@ public class Question {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getOrder() {
-        return order;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
     }
 
     public int getCorrectAnswer() {
