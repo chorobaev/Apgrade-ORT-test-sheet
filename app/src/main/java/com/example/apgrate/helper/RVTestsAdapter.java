@@ -1,6 +1,7 @@
 package com.example.apgrate.helper;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.apgrate.R;
 import com.example.apgrate.model.Test;
+import com.example.apgrate.screens.test.TestActivity;
 
 import java.util.ArrayList;
 
@@ -54,12 +56,16 @@ public class RVTestsAdapter extends RecyclerView.Adapter<RVTestsAdapter.TestView
     class TestViewHolder extends RecyclerView.ViewHolder {
         TextView tvTestName;
         TextView tvTestStatus;
+        View view;
 
         TestViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            view = itemView;
             tvTestName = itemView.findViewById(R.id.tv_test_name);
             tvTestStatus = itemView.findViewById(R.id.tv_test_status);
+
+            itemView.setClickable(true);
 
             itemView.setOnClickListener(view -> {
                 Log.d(TAG, "Item clicked " + getPosition());
@@ -69,6 +75,11 @@ public class RVTestsAdapter extends RecyclerView.Adapter<RVTestsAdapter.TestView
 
         private void gotoTestActivity() {
             // TODO: implement goto TestActivity
+            Intent intent  = new Intent(mContext, TestActivity.class);
+            intent.putExtra(TestActivity.ACTUAL_TEST, tests.get(getPosition()));
+            //Log.d("MylogSent", tests.get(getPosition()).toString());
+            //intent.putExtra(TestActivity.ACTUAL_TEST, tests.get(getPosition()).getId());
+            mContext.startActivity(intent);
         }
     }
 }

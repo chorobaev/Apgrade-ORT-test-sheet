@@ -1,37 +1,57 @@
 package com.example.apgrate.model;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import androidx.annotation.NonNull;
+
 @IgnoreExtraProperties
-public class Test {
+public class Test implements Serializable {
 
     public enum TestStatus {OPEN, CLOSED, PASSED}
 
     private String id;
     private String name;
     private TestStatus status;
-    private HashMap<MiniTest.Category, MiniTest> tests;
+    private ArrayList<MiniTest> tests;
     private Date createdAt;
+
+    public Test() {
+        this.name = "";
+        this.id = "";
+        this.status = TestStatus.OPEN;
+        initTests();
+    }
 
     public Test(String name) {
         this.name = name;
         this.id = "";
         this.status = TestStatus.OPEN;
-        this.tests = new HashMap<>();
+        initTests();
     }
 
     public Test(String name, TestStatus status) {
         this.id = "";
         this.name = name;
         this.status = status;
-        this.tests = new HashMap<>();
+        initTests();
     }
 
-    public Test(String name, TestStatus status, HashMap<MiniTest.Category, MiniTest> tests) {
+    private void initTests() {
+        tests = new ArrayList<>();
+        tests.add(null);
+        tests.add(null);
+        tests.add(null);
+        tests.add(null);
+        tests.add(null);
+    }
+
+    public Test(String name, TestStatus status, ArrayList<MiniTest> tests) {
         this.id = "";
         this.name = name;
         this.tests = tests;
@@ -63,43 +83,43 @@ public class Test {
     }
 
     public MiniTest getMathFirst() {
-        return tests.get(MiniTest.Category.MATH_1);
+        return tests.get(0);
     }
 
     public MiniTest getMathSecond() {
-        return tests.get(MiniTest.Category.MATH_2);
+        return tests.get(1);
     }
 
     public MiniTest getLanguageFirst() {
-        return tests.get(MiniTest.Category.LANGUAGE_1);
+        return tests.get(2);
     }
 
     public MiniTest getLanguageSecond() {
-        return tests.get(MiniTest.Category.LANGUAGE_2);
+        return tests.get(3);
     }
 
     public MiniTest getLanguageThird() {
-        return tests.get(MiniTest.Category.LANGUAGE_3);
+        return tests.get(4);
     }
 
-    public void getMathFirst(MiniTest test) {
-        tests.put(MiniTest.Category.MATH_1, test);
+    public void setMathFirst(MiniTest test) {
+        tests.set(0, test);
     }
 
-    public void getMathSecond(MiniTest test) {
-        tests.put(MiniTest.Category.MATH_2, test);
+    public void setMathSecond(MiniTest test) {
+        tests.set(1, test);
     }
 
-    public void getLanguageFirst(MiniTest test) {
-        tests.put(MiniTest.Category.LANGUAGE_1, test);
+    public void setLanguageFirst(MiniTest test) {
+        tests.set(2, test);
     }
 
-    public void getLanguageSecond(MiniTest test) {
-        tests.put(MiniTest.Category.LANGUAGE_2, test);
+    public void setLanguageSecond(MiniTest test) {
+        tests.set(3, test);
     }
 
-    public void getLanguageThird(MiniTest test) {
-        tests.put(MiniTest.Category.LANGUAGE_3, test);
+    public void setLanguageThird(MiniTest test) {
+        tests.set(4, test);
     }
 
     public Date getCreatedAt() {
@@ -110,20 +130,23 @@ public class Test {
         this.createdAt = createdAt;
     }
 
+    @Exclude
     public static Test getInstance(String name) {
         return new Test(name, Test.TestStatus.OPEN, getMiniTests());
     }
 
-    private static HashMap<MiniTest.Category, MiniTest> getMiniTests() {
-        HashMap<MiniTest.Category, MiniTest> miniTestHashMap = new HashMap<>();
-        miniTestHashMap.put(MiniTest.Category.MATH_1, new MiniTest(MiniTest.Category.MATH_1, getQuestions()));
-        miniTestHashMap.put(MiniTest.Category.MATH_2, new MiniTest(MiniTest.Category.MATH_2, getQuestions()));
-        miniTestHashMap.put(MiniTest.Category.LANGUAGE_1, new MiniTest(MiniTest.Category.LANGUAGE_1, getQuestions()));
-        miniTestHashMap.put(MiniTest.Category.LANGUAGE_2, new MiniTest(MiniTest.Category.LANGUAGE_2, getQuestions()));
-        miniTestHashMap.put(MiniTest.Category.LANGUAGE_3, new MiniTest(MiniTest.Category.LANGUAGE_3, getQuestions()));
-        return miniTestHashMap;
+    @Exclude
+    private static ArrayList<MiniTest> getMiniTests() {
+        ArrayList<MiniTest> miniTest = new ArrayList<>();
+        miniTest.add(new MiniTest(MiniTest.Category.MATH_1, getQuestions()));
+        miniTest.add(new MiniTest(MiniTest.Category.MATH_2, getQuestions()));
+        miniTest.add(new MiniTest(MiniTest.Category.LANGUAGE_1, getQuestions()));
+        miniTest.add(new MiniTest(MiniTest.Category.LANGUAGE_2, getQuestions()));
+        miniTest.add(new MiniTest(MiniTest.Category.LANGUAGE_3, getQuestions()));
+        return miniTest;
     }
 
+    @Exclude
     private static ArrayList<Question> getQuestions() {
         ArrayList<Question> questions = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
@@ -133,5 +156,16 @@ public class Test {
         }
 
         return questions;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Name: " + name + "\n" +
+                tests.get(0) + "\n" +
+                tests.get(1) + "\n" +
+                tests.get(2) + "\n" +
+                tests.get(3) + "\n" +
+                tests.get(4) + "\n";
     }
 }

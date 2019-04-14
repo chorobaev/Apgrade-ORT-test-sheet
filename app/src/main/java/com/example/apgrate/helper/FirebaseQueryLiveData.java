@@ -18,6 +18,7 @@ public class FirebaseQueryLiveData extends LiveData<DataSnapshot> {
 
     private final Query query;
     private final MyValueEventListener listener = new MyValueEventListener();
+    private final String TAG = "MylogFirebaseQueryLD";
 
     public FirebaseQueryLiveData(Query query) {
         this.query = query;
@@ -42,8 +43,7 @@ public class FirebaseQueryLiveData extends LiveData<DataSnapshot> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NotNull DataSnapshot dataSnapshot) {
-            Log.d("Mylog", "" + dataSnapshot);
-
+            Log.d(TAG, dataSnapshot.toString());
             setValue(dataSnapshot);
         }
 

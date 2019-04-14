@@ -4,29 +4,22 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.example.apgrate.data.firebase.UserRepository;
-import com.example.apgrate.model.User;
+import com.example.apgrate.model.Test;
 import com.example.apgrate.screens.introduction.IntroActivity;
-import com.example.apgrate.screens.introduction.IntroFragment;
-import com.example.apgrate.screens.login.FillupFragment;
 import com.example.apgrate.screens.login.LoginActivity;
-import com.example.apgrate.screens.test.TestActivity;
-import com.example.apgrate.utils.CommonUtils;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import android.util.Log;
-import android.view.View;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -34,28 +27,34 @@ import com.example.apgrate.BuildConfig;
 import com.example.apgrate.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private MainViewModel mViewModel;
+    private final int LOGIN_REQUEST_CODE = 111;
+
+    public MainActivity() {
+        super();
+        // Enable firebase offline capabilities
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mViewModel.init();
+
         checkAuthentication();
         checkFirstRun();
-
-        Intent intent = new Intent(this, TestActivity.class);
-        startActivity(intent);
-
-        //onNavigationItemSelected(findViewById(R.menu.n));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -68,6 +67,25 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setCheckedItem(R.id.nav_tests);
+        navigationView.getMenu().performIdentifierAction(R.id.nav_tests, 0);
+    }
+
+    private void setObservers() {
+        mViewModel.getTestsSnap().observe(this, testsSnap -> {
+            ArrayList<Test> tests = new ArrayList<>();
+
+            for (DataSnapshot snapshot : testsSnap.getChildren()) {
+                try {
+                    Test test = snapshot.getValue(Test.class);
+                    //Log.d("MylogTests", "" + test);
+                    tests.add(test);
+                }catch (Exception e) {
+                    Log.d("MylogErrCast", e.getMessage());
+                }
+            }
+            mViewModel.setTests(tests);
+        });
     }
 
     @Override
@@ -100,6 +118,15 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == LOGIN_REQUEST_CODE && resultCode == RESULT_OK) {
+            setObservers();
+        }
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -161,8 +188,9 @@ public class MainActivity extends AppCompatActivity
     private void checkAuthentication() {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent, LOGIN_REQUEST_CODE);
         } else {
+            setObservers();
         }
     }
 }

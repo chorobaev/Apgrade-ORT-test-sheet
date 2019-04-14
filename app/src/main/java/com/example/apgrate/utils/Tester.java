@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Tester {
 
-    public static ArrayList<Test> getTests() {
+    /*public static ArrayList<Test> getTests() {
         ArrayList<Test> tests = new ArrayList<>();
 
         for (int i = 1; i < 10; i++) {
@@ -19,11 +19,11 @@ public class Tester {
         }
 
         return tests;
-    }
+    }*/
 
-    public static Test getTest(String name) {
+    /*public static Test getTest(String name) {
         return new Test(name, Test.TestStatus.OPEN, getMiniTests());
-    }
+    }*/
 
     public static HashMap<MiniTest.Category, MiniTest> getMiniTests() {
         HashMap<MiniTest.Category, MiniTest> miniTestHashMap = new HashMap<>();

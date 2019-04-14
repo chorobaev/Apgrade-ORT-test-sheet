@@ -14,6 +14,7 @@ import com.example.apgrate.utils.Tester;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +22,7 @@ public class TestsFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RVTestsAdapter mAdapter;
+    private MainViewModel mViewModel;
 
     @Nullable
     @Override
@@ -33,11 +35,21 @@ public class TestsFragment extends Fragment {
 
         mAdapter = new RVTestsAdapter(getContext());
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.updateData(Tester.getTests());
-
-        Intent intent = new Intent(getContext(), TestActivity.class);
-        getActivity().startActivity(intent);
 
         return v;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+        setObservers();
+    }
+
+    private void setObservers() {
+        mViewModel.getTests().observe(this, tests -> {
+            mAdapter.updateData(tests);
+        });
     }
 }

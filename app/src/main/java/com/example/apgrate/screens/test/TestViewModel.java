@@ -1,21 +1,23 @@
 package com.example.apgrate.screens.test;
 
 import android.util.Log;
-import android.widget.LinearLayout;
 
+import com.example.apgrate.data.firebase.UserRepository;
+import com.example.apgrate.helper.Common;
 import com.example.apgrate.model.MiniTest;
+import com.example.apgrate.model.Schedule;
 import com.example.apgrate.model.Test;
+import com.example.apgrate.model.TestResult;
 import com.example.apgrate.utils.BaseViewModel;
 import com.example.apgrate.utils.CommonUtils;
-
-import java.util.Timer;
-import java.util.TimerTask;
+import com.google.firebase.database.DataSnapshot;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 public class TestViewModel extends BaseViewModel {
 
+    private UserRepository userRepo = new UserRepository();
     private MutableLiveData<Test> currentTest = new MutableLiveData<>();
     private MutableLiveData<Test> actualTest = new MutableLiveData<>();
     private MutableLiveData<MiniTest.Category> currentTestCategory = new MutableLiveData<>();
@@ -23,12 +25,13 @@ public class TestViewModel extends BaseViewModel {
     private MutableLiveData<Integer> leftTime = new MutableLiveData<>();
     private CommonUtils.TestTimer timer = new CommonUtils.TestTimer();
     private MutableLiveData<Boolean> isBreakTime = new MutableLiveData<>();
+    private Schedule schedule = new Schedule();
 
-    public void init() {
+    void init() {
         currentTest.setValue(Test.getInstance("Current test"));
         currentTestCategory.setValue(MiniTest.Category.MATH_1);
         isTestFinished.setValue(false);
-        isBreakTime.setValue(true);
+        isBreakTime.setValue(false);
 
         CommonUtils.OnTimerListener listener = new CommonUtils.OnTimerListener() {
             @Override
@@ -39,50 +42,14 @@ public class TestViewModel extends BaseViewModel {
             @Override
             public void timeOver() {
                 //TODO: time is over finish the current test
-                nextTest();
+                nextSection();
             }
         };
 
         timer.setOnTimerListener(listener);
     }
 
-    public void setTimer(int seconds) {
-        timer.setNewTimer(seconds);
-    }
-
-    public void nextTest() {
-        if (isBreakTime.getValue()) {
-            if (!isTestFinished.getValue()) {
-                isBreakTime.postValue(false);
-            }
-        } else {ad
-            startNextCategory();
-            isBreakTime.postValue(true);
-        }
-    }
-
-    private void startNextCategory() {
-        MiniTest.Category category = currentTestCategory.getValue();
-        switch (category) {
-            case MATH_1:
-                currentTestCategory.postValue(MiniTest.Category.MATH_2);
-                break;
-            case MATH_2:
-                currentTestCategory.postValue(MiniTest.Category.LANGUAGE_1);
-                break;
-            case LANGUAGE_1:
-                currentTestCategory.postValue(MiniTest.Category.LANGUAGE_2);
-                break;
-            case LANGUAGE_2:
-                currentTestCategory.postValue(MiniTest.Category.LANGUAGE_3);
-                break;
-            case LANGUAGE_3:
-                isTestFinished.postValue(true);
-                break;
-        }
-    }
-
-    public void chooseAnswer(int testIndex, int answer) {
+    void chooseAnswer(int testIndex, int answer) {
         MiniTest.Category category = currentTestCategory.getValue();
         Test test = currentTest.getValue();
         Log.d("MylogCatAndTest", "" + test + category);
@@ -105,23 +72,85 @@ public class TestViewModel extends BaseViewModel {
         }
     }
 
-    public void countResult() {
-        // TODO: count the result.
+    TestResult countResult() {
+        // TODO: count the result
+        return Common.countTestResult(currentTest.getValue(), actualTest.getValue());
     }
 
-    public LiveData<MiniTest.Category> getCurrentTestCategory() {
+    void startNextSection() {
+        setTimer(schedule.getSchedule());
+        schedule.next();
+    }
+
+    void forceToStartNextSection() {
+        timer.terminateTimer();
+        nextSection();
+    }
+
+    void setActualTest(Test test) {
+        actualTest.setValue(test);
+    }
+
+    private void setTimer(int seconds) {
+        timer.setNewTimer(seconds);
+    }
+
+    private void nextSection() {
+        //Log.d("MylogSec", "nextSection" + isBreakTime.getValue());
+        if (isBreakTime.getValue()) {
+            setNextTestCategory();
+            isBreakTime.postValue(false);
+        } else {
+            if (!(currentTestCategory.getValue() == MiniTest.Category.LANGUAGE_3)) {
+                isBreakTime.postValue(true);
+            } else {
+                try {
+                    isTestFinished.postValue(true);
+                } catch (Exception e) {
+                    Log.d("MylogError", e.getMessage());
+                }
+            }
+        }
+    }
+
+    private void setNextTestCategory() {
+        MiniTest.Category category = currentTestCategory.getValue();
+        switch (category) {
+            case MATH_1:
+                currentTestCategory.postValue(MiniTest.Category.MATH_2);
+                break;
+            case MATH_2:
+                currentTestCategory.postValue(MiniTest.Category.LANGUAGE_1);
+                break;
+            case LANGUAGE_1:
+                currentTestCategory.postValue(MiniTest.Category.LANGUAGE_2);
+                break;
+            case LANGUAGE_2:
+                currentTestCategory.postValue(MiniTest.Category.LANGUAGE_3);
+                break;
+            case LANGUAGE_3:
+                isTestFinished.postValue(true);
+                break;
+        }
+    }
+
+    LiveData<DataSnapshot> getTestSnap(String id) {
+        return userRepo.getTestById(id);
+    }
+
+    LiveData<MiniTest.Category> getCurrentTestCategory() {
         return currentTestCategory;
     }
 
-    public LiveData<Boolean> getIsTestFinished() {
+    LiveData<Boolean> getIsTestFinished() {
         return isTestFinished;
     }
 
-    public LiveData<Integer> getTimer() {
+    LiveData<Integer> getTimer() {
         return leftTime;
     }
 
-    public LiveData<Boolean> getIsBreakTime() {
+    LiveData<Boolean> getIsBreakTime() {
         return isBreakTime;
     }
 }

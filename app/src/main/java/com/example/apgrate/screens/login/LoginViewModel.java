@@ -6,7 +6,9 @@ import com.example.apgrate.data.FirebaseUserRepository;
 import com.example.apgrate.data.firebase.UserRepository;
 import com.example.apgrate.model.User;
 import com.example.apgrate.utils.BaseViewModel;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DataSnapshot;
 
 import androidx.lifecycle.LiveData;
@@ -16,7 +18,11 @@ import androidx.lifecycle.ViewModel;
 class LoginViewModel extends ViewModel {
 
     private final MutableLiveData<String> keyword = new MutableLiveData<>();;
-    private final UserRepository userRepository = new UserRepository();
+    private UserRepository userRepository;
+
+    void init(OnCompleteListener<AuthResult> onCompleteListener) {
+        this.userRepository = new UserRepository(onCompleteListener);
+    }
 
     void setKeyword(String keyword) {
         this.keyword.setValue(keyword);

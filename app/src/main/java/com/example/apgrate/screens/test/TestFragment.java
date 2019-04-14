@@ -22,7 +22,7 @@ public class TestFragment extends Fragment {
     private TestLayout mTestLayout;
     private static final String TEXT_SIZE = "size_of_test";
 
-    public static TestFragment getInstance(int testSize) {
+    static TestFragment getInstance(int testSize) {
         Bundle bundle = new Bundle();
         bundle.putInt(TEXT_SIZE, testSize);
         TestFragment fragment = new TestFragment();

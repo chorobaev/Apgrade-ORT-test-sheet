@@ -1,16 +1,23 @@
 package com.example.apgrate.model;
 
-public class Question {
+import java.io.Serializable;
+
+import androidx.annotation.NonNull;
+
+public class Question implements Serializable {
 
     private int id;
     private int correctAnswer;
+    private double marks;
+
+    public Question() {
+
+    }
 
     public Question(int correctAnswer, int marks) {
         this.correctAnswer = correctAnswer;
         this.marks = marks;
     }
-
-    private int marks;
 
     public int getId() {
         return id;
@@ -28,11 +35,17 @@ public class Question {
         this.correctAnswer = correctAnswer;
     }
 
-    public int getMarks() {
+    public double getMarks() {
         return marks;
     }
 
-    public void setMarks(int marks) {
+    public void setMarks(double marks) {
         this.marks = marks;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "" + "CA: " + correctAnswer + " Marks: " + marks;
     }
 }

@@ -1,8 +1,11 @@
 package com.example.apgrate.model;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
 import java.util.ArrayList;
 import java.util.Date;
 
+@IgnoreExtraProperties
 public class User {
 
     private String uid;
@@ -14,6 +17,9 @@ public class User {
     private int leftAttemts = 3;
     private ArrayList<Integer> testIds;
     private Date createdAt;
+
+    public  User() {
+    }
 
     public User(String firstName, String sureName) {
         this.firstname = firstName;

@@ -61,11 +61,8 @@ public class FillupFragment extends Fragment {
         String region = etRegion.getText().toString();
         String school = etSchool.getText().toString();
         if (!name.isEmpty() && !surename.isEmpty() && !region.isEmpty() && !school.isEmpty()) {
-
             Log.d("Keyword: " , mViewModel.getKeyword().getValue());
             mViewModel.registerNewUser(new User(name, surename, region, school));
-
-            mActivity.finish();
         } else {
             CommonUtils.makeShortToast(getContext(), "Please fill all fields.");
         }

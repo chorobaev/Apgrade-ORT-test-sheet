@@ -33,4 +33,13 @@
     <string name="toast_empty_entries">Please fill all fields.</string>
     <string name="toast_not_valid_key">Keyword is not exist</string>
 
+    <string name="test_category_break_time">Break time</string>
+    <string name="test_category_math1">Math 1</string>
+    <string name="test_category_math2">Math 2</string>
+    <string name="test_category_language1">Language 1</string>
+    <string name="test_category_language2">Language 2</string>
+    <string name="test_category_language3">Language 3</string>
+
+    <string name="test_msg_result">Math 1: %d in %d\nMath 2: %d in %d\nLanguage 1: %d in %d\nLanguage 2: %d in %d\nLanguage 3: %d in %d</string>
+
 </resources>
