@@ -1,5 +1,6 @@
 package com.example.apgrate.model;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
@@ -17,6 +18,16 @@ public class TestResult {
     private double maxLanguage3;
 
     private String userId;
+
+    @Exclude
+    public double getAll() {
+        return language1 + language2 + language3 + math1 + math2;
+    }
+
+    @Exclude
+    public double getMaxAll() {
+        return maxLanguage1 + maxLanguage2 + maxLanguage3 + maxMath1 + maxMath2;
+    }
 
     public double getMath1() {
         return math1;

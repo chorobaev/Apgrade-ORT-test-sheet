@@ -5,13 +5,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.apgrate.R;
 import com.example.apgrate.model.TestResult;
-
-import java.security.spec.ECField;
+import com.example.apgrate.utils.CommonUtils;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +20,6 @@ import androidx.lifecycle.ViewModelProviders;
 public class ResultFragment extends Fragment {
 
     private TextView tvResult;
-    private Button btFinish;
     private TestViewModel mViewModel;
 
     @Nullable
@@ -30,16 +28,10 @@ public class ResultFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_test_result, container, false);
 
         tvResult = view.findViewById(R.id.tv_test_result);
-        btFinish = view.findViewById(R.id.bt_return_home);
 
-        setOnClickListeners();
         setObservers();
 
         return view;
-    }
-
-    private void setOnClickListeners() {
-        btFinish.setOnClickListener(view -> getActivity().finish());
     }
 
     private void setObservers() {
@@ -48,17 +40,31 @@ public class ResultFragment extends Fragment {
                 if (isTestFinished) {
                     String resultString = tvResult.getText().toString();
                     TestResult tres = mViewModel.countResult();
+                    saveTestResults(tres);
                     String result = String.format(resultString,
                             (int)tres.getMath1(), (int)tres.getMaxMath1(),
                             (int)tres.getMath2(), (int)tres.getMaxMath2(),
                             (int)tres.getLanguage1(), (int)tres.getMaxLanguage1(),
                             (int)tres.getLanguage2(), (int)tres.getMaxLanguage2(),
-                            (int)tres.getLanguage3(), (int)tres.getMaxLanguage3());
+                            (int)tres.getLanguage3(), (int)tres.getMaxLanguage3(),
+                            (int)tres.getAll(), (int)tres.getMaxAll());
                     tvResult.setText(result);
                 }
             } catch (Exception e) {
-                Log.d("MylogErrFrag", e.getMessage() + e.getStackTrace());
+                Log.d("MylogErrFrag", e.getMessage());
             }
+        });
+    }
+
+    private void saveTestResults(TestResult testResult) {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        uid = uid.substring(0, uid.indexOf('@'));
+        testResult.setUserId(uid);
+        mViewModel.saveTestResults(testResult, task -> {
+            String resultMsg = task.isSuccessful() ? getResources().getString(R.string.toast_test_result_saving_success)
+                    : getResources().getString(R.string.toast_test_result_saving_failed);
+
+            CommonUtils.makeLongToast(getContext(), resultMsg);
         });
     }
 

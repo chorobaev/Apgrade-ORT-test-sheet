@@ -2,17 +2,18 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:gravity="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center">
 
     <TextView
-        android:id="@+id/tv_test_result"
+        android:id="@+id/tv_break_time_hint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/test_msg_result"
-        android:textSize="20sp"
+        android:text="@string/test_break_msg_hint"
+        android:textSize="22sp"
         android:textColor="@color/colorBlack"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
 
 </LinearLayout>

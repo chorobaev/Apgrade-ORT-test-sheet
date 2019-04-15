@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.apgrate.data.FirebaseUserRepository;
 import com.example.apgrate.helper.FirebaseQueryLiveData;
+import com.example.apgrate.model.TestResult;
 import com.example.apgrate.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -95,5 +96,11 @@ public class UserRepository implements FirebaseUserRepository {
     @Override
     public void signInUser(String keyword) {
         userAuth.signInWithEmailAndPassword(keyword + "@apgrade.kg", keyword).addOnCompleteListener(onCompleteAuthResultListener);
+    }
+
+    @Override
+    public void saveTestResults(TestResult testResult, OnCompleteListener<Void> onCompleteListener) {
+        DatabaseReference results = mDatabase.child("results").push();
+        results.setValue(testResult).addOnCompleteListener(onCompleteListener);
     }
 }

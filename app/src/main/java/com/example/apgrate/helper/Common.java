@@ -1,6 +1,7 @@
 package com.example.apgrate.helper;
 
-import android.util.Log;
+import android.content.Context;
+import android.content.DialogInterface;
 
 import com.example.apgrate.model.MiniTest;
 import com.example.apgrate.model.Question;
@@ -8,6 +9,8 @@ import com.example.apgrate.model.Test;
 import com.example.apgrate.model.TestResult;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AlertDialog;
 
 public class Common {
 
@@ -35,19 +38,19 @@ public class Common {
 
     public static TestResult countTestResult(Test currentTest, Test actualTest) {
         TestResult result = new TestResult();
-        Log.d("MylogActual", actualTest.toString() + actualTest.getMathFirst());
+        //Log.d("MylogActual", actualTest.toString() + actualTest.getMathFirst());
         result.setMath1(compareAndCount(currentTest.getMathFirst(), actualTest.getMathFirst()));
-        result.setMath1(compareAndCount(currentTest.getMathSecond(), actualTest.getMathSecond()));
-        result.setMath1(compareAndCount(currentTest.getLanguageFirst(), actualTest.getLanguageFirst()));
-        result.setMath1(compareAndCount(currentTest.getLanguageSecond(), actualTest.getLanguageSecond()));
-        result.setMath1(compareAndCount(currentTest.getLanguageThird(), actualTest.getLanguageThird()));
+        result.setMath2(compareAndCount(currentTest.getMathSecond(), actualTest.getMathSecond()));
+        result.setLanguage1(compareAndCount(currentTest.getLanguageFirst(), actualTest.getLanguageFirst()));
+        result.setLanguage2(compareAndCount(currentTest.getLanguageSecond(), actualTest.getLanguageSecond()));
+        result.setLanguage3(compareAndCount(currentTest.getLanguageThird(), actualTest.getLanguageThird()));
 
 
         result.setMaxMath1(actualTest.getMathFirst().getMaxMarks());
         result.setMaxMath2(actualTest.getMathSecond().getMaxMarks());
-        result.setLanguage1(actualTest.getLanguageFirst().getMaxMarks());
-        result.setLanguage2(actualTest.getLanguageSecond().getMaxMarks());
-        result.setLanguage3(actualTest.getLanguageThird().getMaxMarks());
+        result.setMaxLanguage1(actualTest.getLanguageFirst().getMaxMarks());
+        result.setMaxLanguage2(actualTest.getLanguageSecond().getMaxMarks());
+        result.setMaxLanguage3(actualTest.getLanguageThird().getMaxMarks());
 
         return result;
     }
@@ -57,7 +60,7 @@ public class Common {
         ArrayList<Question> keys = actual.getQuestions();
         double result = 0;
         for (int i = 0; i < answer.size(); i++) {
-            if (answer.get(i).getCorrectAnswer() == keys.get(i).getCorrectAnswer()) {
+            if (answer.get(i).getCorrectAnswer() == keys.get(i).getCorrectAnswer() + 1) {
                 result += keys.get(i).getMarks();
             }
         }

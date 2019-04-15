@@ -1,6 +1,7 @@
 package com.example.apgrate.helper;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.example.apgrate.R;
 import com.example.apgrate.model.Test;
 import com.example.apgrate.screens.test.TestActivity;
+import com.example.apgrate.utils.CommonUtils;
 
 import java.util.ArrayList;
 
@@ -69,7 +71,7 @@ public class RVTestsAdapter extends RecyclerView.Adapter<RVTestsAdapter.TestView
 
             itemView.setOnClickListener(view -> {
                 Log.d(TAG, "Item clicked " + getPosition());
-                gotoTestActivity();
+                confirmUsersChose();
             });
         }
 
@@ -77,9 +79,29 @@ public class RVTestsAdapter extends RecyclerView.Adapter<RVTestsAdapter.TestView
             // TODO: implement goto TestActivity
             Intent intent  = new Intent(mContext, TestActivity.class);
             intent.putExtra(TestActivity.ACTUAL_TEST, tests.get(getPosition()));
-            //Log.d("MylogSent", tests.get(getPosition()).toString());
-            //intent.putExtra(TestActivity.ACTUAL_TEST, tests.get(getPosition()).getId());
             mContext.startActivity(intent);
+        }
+
+        private void confirmUsersChose() {
+            DialogInterface.OnClickListener listener = (dialog, which) -> {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        gotoTestActivity();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        // TODO: stay in this activity
+                        break;
+                }
+            };
+            String title = mContext.getResources().getString(R.string.dialog_start_test_title);
+            String msg = mContext.getResources().getString(R.string.dialog_start_test_msg);
+            String positiveBtn = mContext.getResources().getString(R.string.dialog_yes_btn);
+            String negativeBtn = mContext.getResources().getString(R.string.dialog_no_btn);
+
+            CommonUtils.showYesNoDialog(mContext, title, msg, positiveBtn, negativeBtn, listener);
         }
     }
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fanlab="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_test_layout"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -13,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
-        fanlab:size="1">
+        fanlab:size="30">
 
     </com.example.apgrate.helper.TestLayout>
 

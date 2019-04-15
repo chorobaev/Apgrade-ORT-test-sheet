@@ -26,7 +26,6 @@ public class TestLayout extends LinearLayout{
     private int[] mAnswers;
     private Context mActivity;
     private LinearLayout mLinearLayout;
-    private LinearLayout mContainer;
     private RadioButton[][] buttons;
     private OnAnswerClickListener mListener;
 
@@ -54,7 +53,7 @@ public class TestLayout extends LinearLayout{
 
     private void updateButtons() {
         for (int i = 0; i < mTestSize; i++) {
-            for (int j = 0; j < 5; j++) {
+            for (int j = 1; j < 6; j++) {
                 buttons[i][j].setChecked(false);
             }
             if (mAnswers[i] != -1) {
@@ -93,7 +92,7 @@ public class TestLayout extends LinearLayout{
         mActivity = context;
         mTestSize = testSize;
         mAnswers = arrayListToInt(new ArrayList<>());
-        buttons = new RadioButton[mTestSize][5];
+        buttons = new RadioButton[mTestSize][6];
         initUI();
     }
 
@@ -180,7 +179,7 @@ public class TestLayout extends LinearLayout{
     }
 
     private void createRadioButtonsAndAdd(ViewGroup group) {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 1; i < 6; i++) {
             RadioButton radioButton = new RadioButton(mActivity);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             params.leftMargin = dpToPx(2);
@@ -216,6 +215,7 @@ public class TestLayout extends LinearLayout{
 
     private int[] arrayListToInt(ArrayList<Integer> chose) {
         int[] nums = new int[mTestSize];
+        Log.d("MylogSize", mTestSize + " " + chose.size());
         for (int i = 0; i < mTestSize; i++) {
             if (chose.size() > i) {
                 nums[i] = chose.get(i);

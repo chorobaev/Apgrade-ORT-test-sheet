@@ -1,6 +1,8 @@
 package com.example.apgrate.data;
 
+import com.example.apgrate.model.TestResult;
 import com.example.apgrate.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.database.DataSnapshot;
 
 import androidx.lifecycle.LiveData;
@@ -14,4 +16,5 @@ public interface FirebaseUserRepository {
     LiveData<DataSnapshot> getTestById(String id);
     void registerUser(User user, String keyword);
     void signInUser(String keyword);
+    void saveTestResults(TestResult testResult, OnCompleteListener<Void> onCompleteListener);
 }

@@ -10,6 +10,7 @@ import com.example.apgrate.model.Test;
 import com.example.apgrate.model.TestResult;
 import com.example.apgrate.utils.BaseViewModel;
 import com.example.apgrate.utils.CommonUtils;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.database.DataSnapshot;
 
 import androidx.lifecycle.LiveData;
@@ -77,6 +78,10 @@ public class TestViewModel extends BaseViewModel {
         return Common.countTestResult(currentTest.getValue(), actualTest.getValue());
     }
 
+    void saveTestResults(TestResult testResult, OnCompleteListener<Void> onCompleteListener) {
+        userRepo.saveTestResults(testResult, onCompleteListener);
+    }
+
     void startNextSection() {
         setTimer(schedule.getSchedule());
         schedule.next();
@@ -104,11 +109,7 @@ public class TestViewModel extends BaseViewModel {
             if (!(currentTestCategory.getValue() == MiniTest.Category.LANGUAGE_3)) {
                 isBreakTime.postValue(true);
             } else {
-                try {
-                    isTestFinished.postValue(true);
-                } catch (Exception e) {
-                    Log.d("MylogError", e.getMessage());
-                }
+                isTestFinished.postValue(true);
             }
         }
     }

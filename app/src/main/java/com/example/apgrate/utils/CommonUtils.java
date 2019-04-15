@@ -1,6 +1,7 @@
 package com.example.apgrate.utils;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -11,6 +12,8 @@ import com.example.apgrate.BuildConfig;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import androidx.appcompat.app.AlertDialog;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -86,5 +89,14 @@ public class CommonUtils {
     public interface OnTimerListener {
         void run(int time);
         void timeOver();
+    }
+
+    public static void showYesNoDialog(Context context, String title, String msg, String positiveBtn, String negativeBtn, DialogInterface.OnClickListener listener) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle(title)
+                .setMessage(msg)
+                .setPositiveButton(positiveBtn, listener)
+                .setNegativeButton(negativeBtn, listener).show();
     }
 }

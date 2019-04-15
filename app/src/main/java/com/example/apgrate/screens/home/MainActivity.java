@@ -27,6 +27,7 @@ import com.example.apgrate.BuildConfig;
 import com.example.apgrate.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
@@ -42,7 +43,11 @@ public class MainActivity extends AppCompatActivity
     public MainActivity() {
         super();
         // Enable firebase offline capabilities
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        try {
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        } catch (DatabaseException e) {
+            Log.d("MylogDatabase", e.getMessage());
+        }
     }
 
     @Override

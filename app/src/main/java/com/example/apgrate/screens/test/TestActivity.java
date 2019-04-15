@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -15,8 +16,6 @@ import com.example.apgrate.model.Test;
 import com.example.apgrate.utils.CommonUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.Serializable;
-
 public class TestActivity extends AppCompatActivity {
 
     private TestViewModel mViewModel;
@@ -25,7 +24,7 @@ public class TestActivity extends AppCompatActivity {
     private TextView tvCategory;
     private TextView tvTimer;
     private FloatingActionButton fabNext;
-    private Test testchik;
+    private Test actualTest;
 
     public static final String ACTUAL_TEST = "ACTUAL_TEST";
 
@@ -45,12 +44,12 @@ public class TestActivity extends AppCompatActivity {
         fabNext = findViewById(R.id.fab_next);
 
         mFragmentManager = getSupportFragmentManager();
-        mTestFragment = TestFragment.getInstance(30);
+        mTestFragment = TestFragment.getInstance();
+        mFragmentManager.beginTransaction().add(R.id.fl_test_container, mTestFragment).commit();
 
-        testchik = (Test) getIntent().getSerializableExtra(ACTUAL_TEST);
-        Log.d("MylogTest", testchik.toString());
-        //Log.d("MylogTestId", testchik.toString());
-        mViewModel.setActualTest(testchik);
+        actualTest = (Test) getIntent().getSerializableExtra(ACTUAL_TEST);
+        Log.d("MylogTest", actualTest.toString());
+        mViewModel.setActualTest(actualTest);
 
         setObservers();
         setOnClickListeners();
@@ -59,16 +58,11 @@ public class TestActivity extends AppCompatActivity {
     private void setObservers() {
         mViewModel.getCurrentTestCategory().observe(this, this::setTitleCategory);
 
-        //mViewModel.getTestSnap(testId).observe(this, testSnap -> {
-            //Test test = testSnap.getValue(Test.class);
-            //if (test != null) {
-            //    Log.d("MylogTest", test.toString());
-            //    mViewModel.setActualTest(test);
-            // }
- //       });
         mViewModel.getIsTestFinished().observe(this, isTestFinished -> {
             if (isTestFinished) {
                 mFragmentManager.beginTransaction().replace(R.id.fl_test_container, new ResultFragment()).commit();
+                fabNext.setImageResource(R.drawable.hand_okay);
+                fabNext.setOnClickListener(v -> finish());
             }
         });
 
@@ -79,9 +73,10 @@ public class TestActivity extends AppCompatActivity {
         mViewModel.getIsBreakTime().observe(this, isBreakTime -> {
             if (isBreakTime) {
                 tvCategory.setText(getResources().getString(R.string.test_category_break_time));
-                mFragmentManager.beginTransaction().remove(mTestFragment).commit();
+                mFragmentManager.beginTransaction().replace(R.id.fl_test_container, BreakTimeFragment.getInstance()).commit();
             } else {
-                mFragmentManager.beginTransaction().add(R.id.fl_test_container, mTestFragment).commit();
+                mTestFragment = TestFragment.getInstance();
+                mFragmentManager.beginTransaction().replace(R.id.fl_test_container, mTestFragment).commit();
             }
             mViewModel.startNextSection();
         });
@@ -109,7 +104,54 @@ public class TestActivity extends AppCompatActivity {
 
     private void setOnClickListeners() {
         fabNext.setOnClickListener(view -> {
-            mViewModel.forceToStartNextSection();
+            askUserToGoOn();
         });
+    }
+
+    private void askUserToGoOn() {
+        DialogInterface.OnClickListener listener = (dialog, which) -> {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    //Yes button clicked
+                    mViewModel.forceToStartNextSection();
+                    break;
+
+                case DialogInterface.BUTTON_NEGATIVE:
+                    //No button clicked
+                    // TODO: stay in this activity
+                    break;
+            }
+        };
+        String title = getResources().getString(R.string.dialog_title_warning);
+        String positiveBtn = getResources().getString(R.string.dialog_yes_btn);
+        String negativeBtn = getResources().getString(R.string.dialog_no_btn);
+        String msg = mViewModel.getIsBreakTime().getValue() ?
+                getResources().getString(R.string.dialog_start_next_test_msg) :
+                getResources().getString(R.string.dialog_finish_current_mini_test_msg);
+
+        CommonUtils.showYesNoDialog(this, title, msg, positiveBtn, negativeBtn, listener);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DialogInterface.OnClickListener listener = (dialog, which) -> {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    //Yes button clicked
+                    super.onBackPressed();
+                    break;
+
+                case DialogInterface.BUTTON_NEGATIVE:
+                    //No button clicked
+                    // TODO: stay in this activity
+                    break;
+            }
+        };
+        String title = getResources().getString(R.string.dialog_title_warning);
+        String msg = getResources().getString(R.string.dialog_leave_test_msg);
+        String positiveBtn = getResources().getString(R.string.dialog_yes_btn);
+        String negativeBtn = getResources().getString(R.string.dialog_no_btn);
+
+        CommonUtils.showYesNoDialog(this, title, msg, positiveBtn, negativeBtn, listener);
     }
 }
