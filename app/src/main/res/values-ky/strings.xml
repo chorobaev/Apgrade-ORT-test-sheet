@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Apgrade</string>
+    <string name="dialog_test_not_available_msg">Бул тестти тапшыра албайсыз.</string>
+    <string name="dialog_yes_btn">ООБА</string>
+    <string name="dialog_ok_btn">МАКУЛ</string>
+    <string name="dialog_no_btn">ЖОК</string>
+
+</resources>

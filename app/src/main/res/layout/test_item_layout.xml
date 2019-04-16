@@ -29,12 +29,18 @@
             android:textSize="23sp"
             tools:text="Test1"/>
 
-        <TextView
+        <ImageView
+            android:id="@+id/iv_availability"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:src="@drawable/lock_outline"/>
+
+        <!--<TextView
             android:id="@+id/tv_test_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            tools:text="status"/>
+            tools:text="status"/>-->
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

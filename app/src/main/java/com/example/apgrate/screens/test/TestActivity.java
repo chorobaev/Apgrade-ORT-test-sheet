@@ -1,6 +1,5 @@
 package com.example.apgrate.screens.test;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -13,10 +12,11 @@ import com.example.apgrate.R;
 import com.example.apgrate.helper.Common;
 import com.example.apgrate.model.MiniTest;
 import com.example.apgrate.model.Test;
+import com.example.apgrate.utils.BaseActivity;
 import com.example.apgrate.utils.CommonUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class TestActivity extends AppCompatActivity {
+public class TestActivity extends BaseActivity {
 
     private TestViewModel mViewModel;
     private FragmentManager mFragmentManager;

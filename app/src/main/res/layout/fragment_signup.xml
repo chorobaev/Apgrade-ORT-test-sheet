@@ -25,8 +25,10 @@
         android:textColor="@color/colorBlue"
         android:textSize="16sp"
         android:textIsSelectable="true"
+        android:clickable="true"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:focusable="true" />
 
     <EditText
         android:id="@+id/et_keyword"
@@ -57,7 +59,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/colorBlue"
-        android:text="@string/signup_msg_get_keyword_clickable"/>
+        android:clickable="true"
+        android:text="@string/signup_msg_get_keyword_clickable"
+        android:focusable="true" />
 
 
 </LinearLayout>

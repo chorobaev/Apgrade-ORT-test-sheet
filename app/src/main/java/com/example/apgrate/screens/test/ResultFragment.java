@@ -1,5 +1,6 @@
 package com.example.apgrate.screens.test;
 
+import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.apgrate.R;
+import com.example.apgrate.helper.Common;
+import com.example.apgrate.model.Test;
 import com.example.apgrate.model.TestResult;
+import com.example.apgrate.screens.ApgradeApp;
 import com.example.apgrate.utils.CommonUtils;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -57,9 +61,11 @@ public class ResultFragment extends Fragment {
     }
 
     private void saveTestResults(TestResult testResult) {
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-        uid = uid.substring(0, uid.indexOf('@'));
-        testResult.setUserId(uid);
+        Application app = ((ApgradeApp) getContext().getApplicationContext());
+        int leftAttempts = ((ApgradeApp) app).getCurrentUser().getLeftAttemptions();
+        testResult.setUserLeftAttempts(leftAttempts);
+        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        testResult.setUserId(Common.getUidFromEmail(email));
         mViewModel.saveTestResults(testResult, task -> {
             String resultMsg = task.isSuccessful() ? getResources().getString(R.string.toast_test_result_saving_success)
                     : getResources().getString(R.string.toast_test_result_saving_failed);

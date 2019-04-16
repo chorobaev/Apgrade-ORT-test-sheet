@@ -1,5 +1,6 @@
 package com.example.apgrate.helper;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.apgrate.R;
@@ -17,6 +19,7 @@ import com.example.apgrate.utils.CommonUtils;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RVTestsAdapter extends RecyclerView.Adapter<RVTestsAdapter.TestViewHolder> {
@@ -42,7 +45,9 @@ public class RVTestsAdapter extends RecyclerView.Adapter<RVTestsAdapter.TestView
     public void onBindViewHolder(@NonNull TestViewHolder holder, int position) {
         Test test = tests.get(position);
         holder.tvTestName.setText(test.getName());
-        holder.tvTestStatus.setText(test.getStatus().toString());
+        if (!(test.getStatus() == Test.TestStatus.OPEN)) {
+            holder.ivStatus.setImageResource(R.drawable.lock_outline);
+        }
     }
 
     @Override
@@ -58,6 +63,7 @@ public class RVTestsAdapter extends RecyclerView.Adapter<RVTestsAdapter.TestView
     class TestViewHolder extends RecyclerView.ViewHolder {
         TextView tvTestName;
         TextView tvTestStatus;
+        ImageView ivStatus;
         View view;
 
         TestViewHolder(@NonNull View itemView) {
@@ -65,14 +71,29 @@ public class RVTestsAdapter extends RecyclerView.Adapter<RVTestsAdapter.TestView
 
             view = itemView;
             tvTestName = itemView.findViewById(R.id.tv_test_name);
-            tvTestStatus = itemView.findViewById(R.id.tv_test_status);
+            ivStatus = itemView.findViewById(R.id.iv_availability);
 
             itemView.setClickable(true);
 
             itemView.setOnClickListener(view -> {
                 Log.d(TAG, "Item clicked " + getPosition());
-                confirmUsersChose();
+                checkTestAvailability();
             });
+        }
+
+        private void checkTestAvailability() {
+            if (tests.get(getPosition()).getStatus() != Test.TestStatus.CLOSED) {
+                confirmUsersChose();
+            } else {
+                AlertDialog dialog = new AlertDialog.Builder(mContext).create();
+                dialog.setTitle(mContext.getResources().getString(R.string.dialog_title_warning));
+                dialog.setMessage(mContext.getResources().getString(R.string.dialog_test_not_available_msg));
+                //dialog.setInverseBackgroundForced(true);
+                dialog.setButton(AlertDialog.BUTTON_NEUTRAL,
+                        mContext.getResources().getString(R.string.dialog_ok_btn),
+                        ((dialog1, which) -> dialog.dismiss()));
+                dialog.show();
+            }
         }
 
         private void gotoTestActivity() {

@@ -1,13 +1,20 @@
 package com.example.apgrate.screens.home;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.example.apgrate.data.firebase.UserRepository;
+import com.example.apgrate.helper.Common;
 import com.example.apgrate.model.Test;
+import com.example.apgrate.model.User;
+import com.example.apgrate.screens.ApgradeApp;
 import com.example.apgrate.screens.introduction.IntroActivity;
 import com.example.apgrate.screens.login.LoginActivity;
 
+import com.example.apgrate.utils.BaseActivity;
+import com.example.apgrate.utils.CommonUtils;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.Nullable;
@@ -27,28 +34,17 @@ import com.example.apgrate.BuildConfig;
 import com.example.apgrate.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseException;
-import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private MainViewModel mViewModel;
     private final int LOGIN_REQUEST_CODE = 111;
-
-    public MainActivity() {
-        super();
-        // Enable firebase offline capabilities
-        try {
-            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        } catch (DatabaseException e) {
-            Log.d("MylogDatabase", e.getMessage());
-        }
-    }
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,13 +72,27 @@ public class MainActivity extends AppCompatActivity
         navigationView.getMenu().performIdentifierAction(R.id.nav_tests, 0);
     }
 
-    private void setObservers() {
+    private void fetchAndSetCurrentUser() {
+        new UserRepository().getCurrentUser(user -> {
+            currentUser = user;
+            ((ApgradeApp) getApplication()).setCurrentUser(user);
+
+            Log.d("MylogCurrUser", user.toString());
+
+            setObservers();
+        });
+    }
+
+    public void setObservers() {
         mViewModel.getTestsSnap().observe(this, testsSnap -> {
             ArrayList<Test> tests = new ArrayList<>();
 
             for (DataSnapshot snapshot : testsSnap.getChildren()) {
                 try {
                     Test test = snapshot.getValue(Test.class);
+                    if (currentUser.getLeftAttemptions() == 0) {
+                        test.setStatus(Test.TestStatus.CLOSED);
+                    }
                     //Log.d("MylogTests", "" + test);
                     tests.add(test);
                 }catch (Exception e) {
@@ -119,6 +129,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            CommonUtils.showChooseLanguageDialog(this);
             return true;
         }
 
@@ -130,7 +141,7 @@ public class MainActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == LOGIN_REQUEST_CODE && resultCode == RESULT_OK) {
-            setObservers();
+            fetchAndSetCurrentUser();
         }
     }
 
@@ -195,7 +206,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, LoginActivity.class);
             startActivityForResult(intent, LOGIN_REQUEST_CODE);
         } else {
-            setObservers();
+            fetchAndSetCurrentUser();
         }
     }
 }

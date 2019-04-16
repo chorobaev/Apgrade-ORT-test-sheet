@@ -5,6 +5,8 @@ import com.google.firebase.database.IgnoreExtraProperties;
 import java.util.ArrayList;
 import java.util.Date;
 
+import androidx.annotation.NonNull;
+
 @IgnoreExtraProperties
 public class User {
 
@@ -14,7 +16,7 @@ public class User {
     private String region;
     private String school;
     private String username;
-    private int leftAttemts = 3;
+    private int leftAttempts = 3;
     private ArrayList<Integer> testIds;
     private Date createdAt;
 
@@ -37,12 +39,12 @@ public class User {
         this.createdAt = new Date();
     }
 
-    public int getLeftAttemtions() {
-        return leftAttemts;
+    public int getLeftAttemptions() {
+        return leftAttempts;
     }
 
-    public void setLeftAttemtions(int leftAttemtions) {
-        this.leftAttemts = leftAttemtions;
+    public void setLeftAttemptions(int leftAttemptions) {
+        this.leftAttempts = leftAttemptions;
     }
 
     public String getUid() {
@@ -107,5 +109,11 @@ public class User {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return firstname + " " + surname + "; User id: " + uid + "; Attempts left: " + leftAttempts;
     }
 }

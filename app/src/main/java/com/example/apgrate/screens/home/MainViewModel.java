@@ -1,7 +1,9 @@
 package com.example.apgrate.screens.home;
 
+import com.example.apgrate.data.FirebaseUserRepository.OnResultListener;
 import com.example.apgrate.data.firebase.UserRepository;
 import com.example.apgrate.model.Test;
+import com.example.apgrate.model.User;
 import com.example.apgrate.utils.BaseViewModel;
 import com.google.firebase.database.DataSnapshot;
 
@@ -29,5 +31,9 @@ public class MainViewModel extends BaseViewModel {
 
     LiveData<DataSnapshot> getTestsSnap() {
         return userRepo.getTests();
+    }
+
+    void getCurrenUser(OnResultListener<User> resultListener) {
+        userRepo.getCurrentUser(resultListener);
     }
 }

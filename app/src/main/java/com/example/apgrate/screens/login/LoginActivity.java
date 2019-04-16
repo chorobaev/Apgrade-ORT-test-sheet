@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 public class LoginActivity extends BaseActivity {
 
-    private LoginViewModel mViewModle;
+    private LoginViewModel mViewModel;
     public SignupFragment fragment;
 
     @Override
@@ -22,12 +22,12 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mViewModle = ViewModelProviders.of(this).get(LoginViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         OnCompleteListener<AuthResult> listener = task -> {
             setResult(RESULT_OK);
             finish();
         };
-        mViewModle.init(listener);
+        mViewModel.init(listener);
 
         fragment = new SignupFragment();
 

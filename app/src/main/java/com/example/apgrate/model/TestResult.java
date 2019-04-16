@@ -18,6 +18,7 @@ public class TestResult {
     private double maxLanguage3;
 
     private String userId;
+    private int userLeftAttempts;
 
     @Exclude
     public double getAll() {
@@ -115,5 +116,13 @@ public class TestResult {
 
     public void setMaxLanguage3(double maxLanguage3) {
         this.maxLanguage3 = maxLanguage3;
+    }
+
+    public int getUserLeftAttempts() {
+        return userLeftAttempts;
+    }
+
+    public void setUserLeftAttempts(int userLeftAttempts) {
+        this.userLeftAttempts = userLeftAttempts;
     }
 }

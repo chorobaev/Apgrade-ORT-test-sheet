@@ -36,6 +36,10 @@ public class Common {
         return s.toString();
     }
 
+    public static String getUidFromEmail(String email) {
+        return email.substring(0, email.indexOf('@'));
+    }
+
     public static TestResult countTestResult(Test currentTest, Test actualTest) {
         TestResult result = new TestResult();
         //Log.d("MylogActual", actualTest.toString() + actualTest.getMathFirst());

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="228dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/activity_horizontal_margin">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="title"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack" />
+
+    <RadioGroup
+        android:id="@+id/rg_languages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/activity_horizontal_margin" />
+
+    <TextView
+        android:id="@+id/tv_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_choose_btn"
+        android:textColor="@color/colorAppMain"
+        android:textStyle="bold"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/activity_horizontal_margin" />
+
+</LinearLayout>

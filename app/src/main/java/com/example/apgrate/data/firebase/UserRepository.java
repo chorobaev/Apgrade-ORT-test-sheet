@@ -3,9 +3,11 @@ package com.example.apgrate.data.firebase;
 import android.util.Log;
 
 import com.example.apgrate.data.FirebaseUserRepository;
+import com.example.apgrate.helper.Common;
 import com.example.apgrate.helper.FirebaseQueryLiveData;
 import com.example.apgrate.model.TestResult;
 import com.example.apgrate.model.User;
+import com.example.apgrate.screens.ApgradeApp;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -36,16 +38,18 @@ public class UserRepository implements FirebaseUserRepository {
     }
 
     @Override
-    public LiveData<User> getCurrentUser() {
-        return null;
+    public void getCurrentUser(OnResultListener<User> resultListener) {
+        getUserById(Common.getUidFromEmail(userAuth.getCurrentUser().getEmail()), resultListener);
     }
 
     @Override
-    public User getUserById(String uid) {
+    public void getUserById(String uid, OnResultListener<User> resultListener) {
         mDatabase.child("users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                User user = dataSnapshot.getValue(User.class);
+                Log.d("MylogCatchdUser" ,user.toString());
+                resultListener.onResult(user);
             }
 
             @Override
@@ -53,8 +57,6 @@ public class UserRepository implements FirebaseUserRepository {
 
             }
         });
-
-        return null;
     }
 
     @Override
@@ -80,8 +82,7 @@ public class UserRepository implements FirebaseUserRepository {
                 makeKeywordActive(keyword);
                 Log.d("My log", "Success");
             }
-            Log.d("My log", "Success not");
-        });
+        }).addOnCompleteListener(onCompleteAuthResultListener);
 
     }
 
@@ -102,5 +103,8 @@ public class UserRepository implements FirebaseUserRepository {
     public void saveTestResults(TestResult testResult, OnCompleteListener<Void> onCompleteListener) {
         DatabaseReference results = mDatabase.child("results").push();
         results.setValue(testResult).addOnCompleteListener(onCompleteListener);
+        mDatabase.child("users")
+                .child(Common.getUidFromEmail(userAuth.getCurrentUser().getEmail()))
+                .child("leftAttemptions").setValue(testResult.getUserLeftAttempts() - 1);
     }
 }
