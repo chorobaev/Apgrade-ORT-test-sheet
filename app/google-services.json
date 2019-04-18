@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "445867308282",
+    "firebase_url": "https://apgrate-4fea3.firebaseio.com",
+    "project_id": "apgrate-4fea3",
+    "storage_bucket": "apgrate-4fea3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445867308282:android:7e773629ea009894",
+        "android_client_info": {
+          "package_name": "com.example.apgrate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445867308282-rod8uuvenqe5mhlv4er8cpcpkskj2iqt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.apgrate",
+            "certificate_hash": "a687052bb93285f3c02344681db3b8a62abb712e"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhQvLpWELk1h7Jz_a5Ve4tiKb9nHHjlD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445867308282-548b6u9c9c2nkn8du5d50nhtedp9cecm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
