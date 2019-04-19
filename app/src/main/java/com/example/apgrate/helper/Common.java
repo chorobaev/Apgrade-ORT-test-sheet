@@ -1,16 +1,11 @@
 package com.example.apgrate.helper;
 
-import android.content.Context;
-import android.content.DialogInterface;
-
 import com.example.apgrate.model.MiniTest;
 import com.example.apgrate.model.Question;
 import com.example.apgrate.model.Test;
 import com.example.apgrate.model.TestResult;
 
 import java.util.ArrayList;
-
-import androidx.appcompat.app.AlertDialog;
 
 public class Common {
 
@@ -64,7 +59,7 @@ public class Common {
         ArrayList<Question> keys = actual.getQuestions();
         double result = 0;
         for (int i = 0; i < answer.size(); i++) {
-            if (answer.get(i).getCorrectAnswer() == keys.get(i).getCorrectAnswer() + 1) {
+            if (answer.get(i).getCorrectAnswer() == keys.get(i).getCorrectAnswer()) {
                 result += keys.get(i).getMarks();
             }
         }

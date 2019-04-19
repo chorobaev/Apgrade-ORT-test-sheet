@@ -7,16 +7,17 @@ import com.example.apgrate.helper.Common;
 import com.example.apgrate.helper.FirebaseQueryLiveData;
 import com.example.apgrate.model.TestResult;
 import com.example.apgrate.model.User;
-import com.example.apgrate.screens.ApgradeApp;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
@@ -106,5 +107,29 @@ public class UserRepository implements FirebaseUserRepository {
         mDatabase.child("users")
                 .child(Common.getUidFromEmail(userAuth.getCurrentUser().getEmail()))
                 .child("leftAttemptions").setValue(testResult.getUserLeftAttempts() - 1);
+    }
+
+    @Override
+    public void getSortedRatings(OnResultListener<ArrayList<TestResult>> resultListener) {
+        Query query = mDatabase.child("results").orderByChild("totalMarks").limitToFirst(100);
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<TestResult> testResults = new ArrayList<>();
+
+                for (DataSnapshot d : dataSnapshot.getChildren()) {
+                    TestResult result = d.getValue(TestResult.class);
+                    testResults.add(0, result);
+                }
+
+                resultListener.onResult(testResults);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

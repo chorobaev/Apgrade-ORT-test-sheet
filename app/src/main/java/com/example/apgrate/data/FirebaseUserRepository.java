@@ -5,6 +5,8 @@ import com.example.apgrate.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.database.DataSnapshot;
 
+import java.util.ArrayList;
+
 import androidx.lifecycle.LiveData;
 
 public interface FirebaseUserRepository {
@@ -17,6 +19,7 @@ public interface FirebaseUserRepository {
     void registerUser(User user, String keyword);
     void signInUser(String keyword);
     void saveTestResults(TestResult testResult, OnCompleteListener<Void> onCompleteListener);
+    void getSortedRatings(OnResultListener<ArrayList<TestResult>> resultListener);
 
     interface OnResultListener<M> {
         void onResult(M result);

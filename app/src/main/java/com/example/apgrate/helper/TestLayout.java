@@ -136,11 +136,11 @@ public class TestLayout extends LinearLayout{
         mLinearLayout.setOrientation(LinearLayout.VERTICAL);
 
         for (int i = 0; i < mTestSize; i++) {
-            createAnswerChoosers(i);
+            createAnswerChooser(i);
         }
     }
 
-    private void createAnswerChoosers(int index) {
+    private void createAnswerChooser(int index) {
         LinearLayout linearLayout = new LinearLayout(mActivity);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.leftMargin = dpToPx(8);
@@ -171,7 +171,7 @@ public class TestLayout extends LinearLayout{
         radioGroup.setLayoutParams(params);
         radioGroup.setOrientation(LinearLayout.HORIZONTAL);
         radioGroup.setGravity(Gravity.BOTTOM);
-        radioGroup.setId(parent.getId());
+        radioGroup.setId((parent.getId()+(int)100));
 
         createRadioButtonsAndAdd(radioGroup);
 
@@ -185,10 +185,10 @@ public class TestLayout extends LinearLayout{
             params.leftMargin = dpToPx(2);
             radioButton.setLayoutParams(params);
             radioButton.setId(i);
-            radioButton.setOnClickListener(v -> onAnswerChosen(v, group.getId()));
+            radioButton.setOnClickListener(v -> onAnswerChosen(v, group.getId() - 100));
             group.addView(radioButton);
 
-            buttons[group.getId()][i] = radioButton;
+            buttons[group.getId() - (int)100][i] = radioButton;
         }
     }
 

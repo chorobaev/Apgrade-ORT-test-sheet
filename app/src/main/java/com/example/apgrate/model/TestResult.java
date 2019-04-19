@@ -16,17 +16,23 @@ public class TestResult {
     private double maxLanguage1;
     private double maxLanguage2;
     private double maxLanguage3;
+    private double totalMarks;
 
     private String userId;
     private int userLeftAttempts;
+    private String userFullName;
+    private String regionAndSchool;
 
-    @Exclude
-    public double getAll() {
+    public double getTotalMarks() {
         return language1 + language2 + language3 + math1 + math2;
     }
 
+    public void setTotalMarks(double totalMarks) {
+        this.totalMarks = totalMarks;
+    }
+
     @Exclude
-    public double getMaxAll() {
+    public double getMaxTotalMarks() {
         return maxLanguage1 + maxLanguage2 + maxLanguage3 + maxMath1 + maxMath2;
     }
 
@@ -124,5 +130,21 @@ public class TestResult {
 
     public void setUserLeftAttempts(int userLeftAttempts) {
         this.userLeftAttempts = userLeftAttempts;
+    }
+
+    public String getUserFullName() {
+        return userFullName;
+    }
+
+    public void setUserFullName(String userFullName) {
+        this.userFullName = userFullName;
+    }
+
+    public String getRegionAndSchool() {
+        return regionAndSchool;
+    }
+
+    public void setRegionAndSchool(String regionAndSchool) {
+        this.regionAndSchool = regionAndSchool;
     }
 }
