@@ -78,7 +78,7 @@ public class ResultFragment extends Fragment {
             String resultMsg = task.isSuccessful() ? getResources().getString(R.string.toast_test_result_saving_success)
                     : getResources().getString(R.string.toast_test_result_saving_failed);
 
-            CommonUtils.makeLongToast(getContext(), resultMsg);
+            CommonUtils.makeLongToast(getActivity(), resultMsg);
         });
     }
 
