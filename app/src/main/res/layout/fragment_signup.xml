@@ -17,7 +17,7 @@
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
 
-    <TextView
+    <!--<TextView
         android:id="@+id/tv_try_for_free"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
         android:clickable="true"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:focusable="true" />
+        android:focusable="true" />-->
 
     <EditText
         android:id="@+id/et_keyword"

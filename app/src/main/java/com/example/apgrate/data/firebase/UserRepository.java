@@ -103,33 +103,20 @@ public class UserRepository implements FirebaseUserRepository {
     @Override
     public void saveTestResults(TestResult testResult, OnCompleteListener<Void> onCompleteListener) {
         DatabaseReference results = mDatabase.child("results").push();
-        results.setValue(testResult).addOnCompleteListener(onCompleteListener);
+        try {
+            results.setValue(testResult).addOnCompleteListener(onCompleteListener);
+        } catch (NullPointerException e) {
+            Log.e("MylogOnResultSave", e.getMessage());
+        }
         mDatabase.child("users")
                 .child(Common.getUidFromEmail(userAuth.getCurrentUser().getEmail()))
                 .child("leftAttemptions").setValue(testResult.getUserLeftAttempts() - 1);
     }
 
     @Override
-    public void getSortedRatings(OnResultListener<ArrayList<TestResult>> resultListener) {
+    public LiveData<DataSnapshot> getSortedRatings() {
         Query query = mDatabase.child("results").orderByChild("totalMarks").limitToFirst(100);
 
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ArrayList<TestResult> testResults = new ArrayList<>();
-
-                for (DataSnapshot d : dataSnapshot.getChildren()) {
-                    TestResult result = d.getValue(TestResult.class);
-                    testResults.add(0, result);
-                }
-
-                resultListener.onResult(testResults);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        return new FirebaseQueryLiveData(query);
     }
 }

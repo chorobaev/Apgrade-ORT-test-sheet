@@ -25,6 +25,7 @@ public class TestActivity extends BaseActivity {
     private TextView tvTimer;
     private FloatingActionButton fabNext;
     private Test actualTest;
+    private boolean isResultsDisplayed = false;
 
     public static final String ACTUAL_TEST = "ACTUAL_TEST";
 
@@ -63,6 +64,7 @@ public class TestActivity extends BaseActivity {
                 mFragmentManager.beginTransaction().replace(R.id.fl_test_container, new ResultFragment()).commit();
                 fabNext.setImageResource(R.drawable.hand_okay);
                 fabNext.setOnClickListener(v -> finish());
+                isResultsDisplayed = true;
             }
         });
 
@@ -147,11 +149,16 @@ public class TestActivity extends BaseActivity {
                     break;
             }
         };
-        String title = getResources().getString(R.string.dialog_title_warning);
-        String msg = getResources().getString(R.string.dialog_leave_test_msg);
-        String positiveBtn = getResources().getString(R.string.dialog_yes_btn);
-        String negativeBtn = getResources().getString(R.string.dialog_no_btn);
 
-        CommonUtils.showYesNoDialog(this, title, msg, positiveBtn, negativeBtn, listener);
+        if (isResultsDisplayed) {
+            finish();
+        } else {
+            String title = getResources().getString(R.string.dialog_title_warning);
+            String msg = getResources().getString(R.string.dialog_leave_test_msg);
+            String positiveBtn = getResources().getString(R.string.dialog_yes_btn);
+            String negativeBtn = getResources().getString(R.string.dialog_no_btn);
+
+            CommonUtils.showYesNoDialog(this, title, msg, positiveBtn, negativeBtn, listener);
+        }
     }
 }

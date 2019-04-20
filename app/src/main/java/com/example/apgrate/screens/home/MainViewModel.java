@@ -16,13 +16,11 @@ import androidx.lifecycle.MutableLiveData;
 public class MainViewModel extends BaseViewModel {
 
     private MutableLiveData<ArrayList<Test>> tests = new MutableLiveData<>();
-    private MutableLiveData<ArrayList<TestResult>> ratings = new MutableLiveData<>();
+    private LiveData<DataSnapshot> ratings = new MutableLiveData<>();
     private UserRepository userRepo = new UserRepository();
 
     void init() {
-        getSortedRatings(results -> {
-            ratings.setValue(results);
-        });
+        ratings = getSortedRatings();
     }
 
     void setTests(ArrayList<Test> tests) {
@@ -33,7 +31,7 @@ public class MainViewModel extends BaseViewModel {
         return tests;
     }
 
-    LiveData<ArrayList<TestResult>> getRatings() {
+    LiveData<DataSnapshot> getRatings() {
         return ratings;
     }
 
@@ -41,11 +39,11 @@ public class MainViewModel extends BaseViewModel {
         return userRepo.getTests();
     }
 
-    void getCurrentUser(OnResultListener<User> resultListener) {
-        userRepo.getCurrentUser(resultListener);
+    private LiveData<DataSnapshot> getSortedRatings() {
+        return userRepo.getSortedRatings();
     }
 
-    private void getSortedRatings(OnResultListener<ArrayList<TestResult>> resultListener) {
-        userRepo.getSortedRatings(resultListener);
+    void getCurrentUser(OnResultListener<User> resultListener) {
+        userRepo.getCurrentUser(resultListener);
     }
 }

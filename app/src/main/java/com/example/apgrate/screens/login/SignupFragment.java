@@ -1,6 +1,6 @@
 package com.example.apgrate.screens.login;
 
-import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,12 +23,13 @@ import androidx.lifecycle.ViewModelProviders;
 
 public class SignupFragment extends Fragment {
 
-    private TextView tvTryForFree;
+    //private TextView tvTryForFree;
     private TextView tvGetKey;
     private Button btNext;
     private EditText etKeyword;
     private LoginViewModel mViewModel;
     private FragmentActivity mActivity;
+    private ProgressDialog mProgressDialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +40,10 @@ public class SignupFragment extends Fragment {
             throw new NullPointerException("Fragment is not hosted");
         }
         mViewModel = ViewModelProviders.of(mActivity).get(LoginViewModel.class);
+
+        mProgressDialog = new ProgressDialog(getContext());
+        mProgressDialog.setMessage(getResources().getString(R.string.dialog_progress_logging_in_msg));
+        mProgressDialog.setCanceledOnTouchOutside(false);
     }
 
     @Nullable
@@ -46,7 +51,7 @@ public class SignupFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signup, container, false);
 
-        tvTryForFree = view.findViewById(R.id.tv_try_for_free);
+        //tvTryForFree = view.findViewById(R.id.tv_try_for_free);
         tvGetKey = view.findViewById(R.id.tv_get_keyword_clickable);
         btNext = view.findViewById(R.id.bt_next);
         etKeyword = view.findViewById(R.id.et_keyword);
@@ -57,9 +62,6 @@ public class SignupFragment extends Fragment {
     }
 
     private void setOnClickListeners() {
-        tvTryForFree.setOnClickListener(view -> {
-
-        });
 
         tvGetKey.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://apgrade.kg"));
@@ -71,6 +73,7 @@ public class SignupFragment extends Fragment {
             if (key.isEmpty()) {
                 CommonUtils.makeLongToast(getContext(), getResources().getString(R.string.toast_empty_key));
             } else {
+                mProgressDialog.show();
                 checkKeyword();
             }
         });

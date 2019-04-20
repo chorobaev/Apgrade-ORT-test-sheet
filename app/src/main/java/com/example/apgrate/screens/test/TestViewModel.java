@@ -83,7 +83,7 @@ public class TestViewModel extends BaseViewModel {
     }
 
     void startNextSection() {
-        setTimer(schedule.getSchedule());
+        setTimer(schedule.getScheduleIndex());
         schedule.next();
     }
 
@@ -153,5 +153,15 @@ public class TestViewModel extends BaseViewModel {
 
     LiveData<Boolean> getIsBreakTime() {
         return isBreakTime;
+    }
+
+    @Override
+    protected void onCleared() {
+        int sectionIndex = schedule.getScheduleIndex();
+        int timeLeft = leftTime.getValue();
+        Test test = currentTest.getValue();
+
+
+        super.onCleared();
     }
 }

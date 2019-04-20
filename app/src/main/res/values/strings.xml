@@ -66,6 +66,7 @@
     <string name="dialog_test_not_available_msg">This test is not available for you.</string>
     <string name="dialog_choose_lang_btn_kg" translatable="false">Кыргызча</string>
     <string name="dialog_choose_lang_btn_ru" translatable="false">Русский</string>
+    <string name="dialog_progress_logging_in_msg">Connecting… wait…</string>
 
     <string name="dialog_yes_btn">YES</string>
     <string name="dialog_no_btn">NO</string>

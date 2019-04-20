@@ -41,7 +41,7 @@ public class Schedule {
         }
     }
 
-    public int getSchedule() {
+    public int getScheduleIndex() {
         return schedule.get(index);
     }
 }

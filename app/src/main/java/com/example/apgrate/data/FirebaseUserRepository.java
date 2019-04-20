@@ -19,7 +19,7 @@ public interface FirebaseUserRepository {
     void registerUser(User user, String keyword);
     void signInUser(String keyword);
     void saveTestResults(TestResult testResult, OnCompleteListener<Void> onCompleteListener);
-    void getSortedRatings(OnResultListener<ArrayList<TestResult>> resultListener);
+    LiveData<DataSnapshot> getSortedRatings();
 
     interface OnResultListener<M> {
         void onResult(M result);

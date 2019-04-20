@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModel;
 
 class LoginViewModel extends ViewModel {
 
-    private final MutableLiveData<String> keyword = new MutableLiveData<>();;
+    private final MutableLiveData<String> keyword = new MutableLiveData<>();
     private UserRepository userRepository;
 
     void init(OnCompleteListener<AuthResult> onCompleteListener) {

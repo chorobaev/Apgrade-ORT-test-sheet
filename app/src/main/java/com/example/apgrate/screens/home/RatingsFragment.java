@@ -7,6 +7,10 @@ import android.view.ViewGroup;
 
 import com.example.apgrate.R;
 import com.example.apgrate.helper.RVRatingsAdapter;
+import com.example.apgrate.model.TestResult;
+import com.google.firebase.database.DataSnapshot;
+
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,8 +50,15 @@ public class RatingsFragment extends Fragment {
     }
 
     private void setObservers() {
-        mViewModel.getRatings().observe(this, results -> {
-            mAdapter.updateData(results);
+        mViewModel.getRatings().observe(this, dataSnapshot -> {
+            ArrayList<TestResult> testResults = new ArrayList<>();
+
+            for (DataSnapshot d : dataSnapshot.getChildren()) {
+                TestResult result = d.getValue(TestResult.class);
+                testResults.add(0, result);
+            }
+
+            mAdapter.updateData(testResults);
         });
     }
 }
