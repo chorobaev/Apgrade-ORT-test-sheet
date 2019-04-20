@@ -33,17 +33,22 @@ public class IntroActivity extends AppIntro {
     @Override
     public void onDonePressed(Fragment currentFragment) {
         super.onDonePressed(currentFragment);
-        finish();
+        closeActivity();
     }
 
     @Override
     public void onSkipPressed(Fragment currentFragment) {
         super.onSkipPressed(currentFragment);
-        finish();
+        closeActivity();
     }
 
     @Override
     public void onBackPressed() {
         CommonUtils.closeApp(this);
+    }
+
+    private void closeActivity() {
+        overridePendingTransition(0, 0);
+        finish();
     }
 }

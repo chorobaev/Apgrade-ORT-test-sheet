@@ -25,6 +25,7 @@ public class LoginActivity extends BaseActivity {
         mViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         OnCompleteListener<AuthResult> listener = task -> {
             setResult(RESULT_OK);
+            overridePendingTransition(0, 0);
             finish();
         };
         mViewModel.init(listener);

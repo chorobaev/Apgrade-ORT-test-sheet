@@ -75,4 +75,6 @@
     <string name="dialog_choose_btn">CHOOSE</string>
     <string name="dialog_choose_lang_title" translatable="false">Выберите язык / Тилди танданыз</string>
 
+    <string name="main_msg_you_are_offline">You are offline \nTry again</string>
+
 </resources>

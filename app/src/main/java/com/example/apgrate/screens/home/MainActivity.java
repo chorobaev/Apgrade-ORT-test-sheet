@@ -1,14 +1,15 @@
 package com.example.apgrate.screens.home;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import com.example.apgrate.data.firebase.UserRepository;
 import com.example.apgrate.model.Test;
 import com.example.apgrate.model.User;
 import com.example.apgrate.screens.ApgradeApp;
-import com.example.apgrate.screens.RoomTest;
 import com.example.apgrate.screens.introduction.IntroActivity;
 import com.example.apgrate.screens.login.LoginActivity;
 
@@ -37,6 +38,7 @@ import com.google.firebase.database.DataSnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity
@@ -46,14 +48,23 @@ public class MainActivity extends BaseActivity
     private final int LOGIN_REQUEST_CODE = 111;
     private User currentUser;
     private TextView tvUser;
+    private TextView tvOffline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Intent intent = new Intent(this, RoomTest.class);
-        //startActivity(intent);
+        tvOffline = findViewById(R.id.tv_no_internet);
+        tvOffline.setOnClickListener(v -> recreate());
+
+        //if (isNetworkConnected()) {
+            initUI();
+        //}
+    }
+
+    private void initUI() {
+        tvOffline.setVisibility(View.GONE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -76,6 +87,12 @@ public class MainActivity extends BaseActivity
 
         checkAuthentication();
         checkFirstRun();
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
     }
 
     private void fetchAndSetCurrentUser() {
@@ -201,13 +218,12 @@ public class MainActivity extends BaseActivity
 
             // TODO This is a new install (or the user cleared the shared preferences)
             Intent intent = new Intent(this, IntroActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
-            //checkAuthentication();
 
         } else if (currentVersionCode > savedVersionCode) {
 
             // TODO This is an upgrade
-            //checkAuthentication();
         }
 
         // Update the shared preferences with the current version code
@@ -217,6 +233,7 @@ public class MainActivity extends BaseActivity
     private void checkAuthentication() {
         if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivityForResult(intent, LOGIN_REQUEST_CODE);
         } else {
             fetchAndSetCurrentUser();
