@@ -1,0 +1,75 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "e6481d49b758ec96b6603091581467ad",
+    "entities": [
+      {
+        "tableName": "TestState",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `math1` TEXT, `math2` TEXT, `language1` TEXT, `language2` TEXT, `language3` TEXT, `current_test_index` INTEGER NOT NULL, `left_time` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "math1",
+            "columnName": "math1",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "math2",
+            "columnName": "math2",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "language1",
+            "columnName": "language1",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "language2",
+            "columnName": "language2",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "language3",
+            "columnName": "language3",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "currentTestIndex",
+            "columnName": "current_test_index",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "leftTime",
+            "columnName": "left_time",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"e6481d49b758ec96b6603091581467ad\")"
+    ]
+  }
+}

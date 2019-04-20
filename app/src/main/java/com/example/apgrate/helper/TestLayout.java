@@ -185,7 +185,7 @@ public class TestLayout extends LinearLayout{
             params.leftMargin = dpToPx(2);
             radioButton.setLayoutParams(params);
             radioButton.setId(i);
-            radioButton.setOnClickListener(v -> onAnswerChosen(v, group.getId() - 100));
+            radioButton.setOnClickListener(v -> onAnswerChosen(v, group.getId() - (int)100));
             group.addView(radioButton);
 
             buttons[group.getId() - (int)100][i] = radioButton;

@@ -3,6 +3,7 @@ package com.example.apgrate.utils;
 import com.example.apgrate.model.MiniTest;
 import com.example.apgrate.model.Question;
 import com.example.apgrate.model.Test;
+import com.example.apgrate.model.TestState;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,6 +45,25 @@ public class Tester {
         }
 
         return questions;
+    }
+
+    public static TestState getDummyTestStateInstance() {
+        TestState testState = new TestState();
+        testState.setMath1(getMiniTest());
+        testState.setMath2(getMiniTest());
+        testState.setLanguage1(getMiniTest());
+        testState.setLanguage2(getMiniTest());
+        testState.setLanguage3(getMiniTest());
+        return testState;
+    }
+
+    private static int[] getMiniTest() {
+        int[] a = new int[31];
+        for (int j = 0; j < 31; j++) {
+            a[j] = j+1;
+        }
+
+        return a;
     }
 
 }

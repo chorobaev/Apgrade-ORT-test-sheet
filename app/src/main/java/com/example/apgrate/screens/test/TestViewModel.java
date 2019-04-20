@@ -1,13 +1,19 @@
 package com.example.apgrate.screens.test;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.apgrate.data.firebase.UserRepository;
+import com.example.apgrate.data.room.AppDatabase;
 import com.example.apgrate.helper.Common;
+import com.example.apgrate.helper.TestHelper;
 import com.example.apgrate.model.MiniTest;
 import com.example.apgrate.model.Schedule;
 import com.example.apgrate.model.Test;
 import com.example.apgrate.model.TestResult;
+import com.example.apgrate.model.TestState;
+import com.example.apgrate.screens.ApgradeApp;
 import com.example.apgrate.utils.BaseViewModel;
 import com.example.apgrate.utils.CommonUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -74,8 +80,7 @@ public class TestViewModel extends BaseViewModel {
     }
 
     TestResult countResult() {
-        // TODO: count the result
-        return Common.countTestResult(currentTest.getValue(), actualTest.getValue());
+        return TestHelper.countTestResult(currentTest.getValue(), actualTest.getValue());
     }
 
     void saveTestResults(TestResult testResult, OnCompleteListener<Void> onCompleteListener) {
@@ -155,13 +160,17 @@ public class TestViewModel extends BaseViewModel {
         return isBreakTime;
     }
 
-    @Override
-    protected void onCleared() {
-        int sectionIndex = schedule.getScheduleIndex();
-        int timeLeft = leftTime.getValue();
-        Test test = currentTest.getValue();
+    void saveTestState(AppDatabase db) {
+        if (!isTestFinished.getValue()) {
+
+            TestState testState = TestHelper.fromTest(currentTest.getValue());
+            testState.setCurrentTestIndex(schedule.getScheduleIndex());
+            testState.setLeftTime(leftTime.getValue());
 
 
-        super.onCleared();
+            db.testStateDao().insertTestState(testState);
+
+            Log.d("MylogTestState", "Test state saved");
+        }
     }
 }

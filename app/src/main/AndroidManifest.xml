@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".screens.test.TestActivity"></activity>
+        <activity android:name=".screens.RoomTest"></activity>
+        <activity android:name=".screens.test.TestActivity" />
         <activity android:name=".screens.login.LoginActivity" />
         <activity
             android:name=".screens.home.MainActivity"

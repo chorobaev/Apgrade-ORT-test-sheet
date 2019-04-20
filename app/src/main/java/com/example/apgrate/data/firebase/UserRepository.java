@@ -17,8 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 

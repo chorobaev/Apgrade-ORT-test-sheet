@@ -8,6 +8,7 @@ import com.example.apgrate.data.firebase.UserRepository;
 import com.example.apgrate.model.Test;
 import com.example.apgrate.model.User;
 import com.example.apgrate.screens.ApgradeApp;
+import com.example.apgrate.screens.RoomTest;
 import com.example.apgrate.screens.introduction.IntroActivity;
 import com.example.apgrate.screens.login.LoginActivity;
 
@@ -50,6 +51,9 @@ public class MainActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Intent intent = new Intent(this, RoomTest.class);
+        //startActivity(intent);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

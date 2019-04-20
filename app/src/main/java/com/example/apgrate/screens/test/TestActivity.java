@@ -3,15 +3,20 @@ package com.example.apgrate.screens.test;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.example.apgrate.R;
+import com.example.apgrate.data.room.AppDatabase;
 import com.example.apgrate.helper.Common;
+import com.example.apgrate.helper.TestHelper;
 import com.example.apgrate.model.MiniTest;
 import com.example.apgrate.model.Test;
+import com.example.apgrate.screens.ApgradeApp;
 import com.example.apgrate.utils.BaseActivity;
 import com.example.apgrate.utils.CommonUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,6 +31,7 @@ public class TestActivity extends BaseActivity {
     private FloatingActionButton fabNext;
     private Test actualTest;
     private boolean isResultsDisplayed = false;
+    private boolean shouldSaveTestState = true;
 
     public static final String ACTUAL_TEST = "ACTUAL_TEST";
 
@@ -63,7 +69,7 @@ public class TestActivity extends BaseActivity {
             if (isTestFinished) {
                 mFragmentManager.beginTransaction().replace(R.id.fl_test_container, new ResultFragment()).commit();
                 fabNext.setImageResource(R.drawable.hand_okay);
-                fabNext.setOnClickListener(v -> finish());
+                fabNext.setOnClickListener(v -> leaveTest());
                 isResultsDisplayed = true;
             }
         });
@@ -140,7 +146,7 @@ public class TestActivity extends BaseActivity {
             switch (which){
                 case DialogInterface.BUTTON_POSITIVE:
                     //Yes button clicked
-                    super.onBackPressed();
+                    leaveTest();
                     break;
 
                 case DialogInterface.BUTTON_NEGATIVE:
@@ -151,7 +157,7 @@ public class TestActivity extends BaseActivity {
         };
 
         if (isResultsDisplayed) {
-            finish();
+            leaveTest();
         } else {
             String title = getResources().getString(R.string.dialog_title_warning);
             String msg = getResources().getString(R.string.dialog_leave_test_msg);
@@ -160,5 +166,28 @@ public class TestActivity extends BaseActivity {
 
             CommonUtils.showYesNoDialog(this, title, msg, positiveBtn, negativeBtn, listener);
         }
+    }
+
+    private void leaveTest() {
+        shouldSaveTestState = false;
+        markSavedTestStateAs(false);
+        finish();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        /*if (shouldSaveTestState && !isResultsDisplayed) {
+            ApgradeApp app = ApgradeApp.getInstance();
+            markSavedTestStateAs(true);
+
+            mViewModel.saveTestState(app.getAppDatabase());
+        }*/
+    }
+
+    private void markSavedTestStateAs(boolean isSaved) {
+        SharedPreferences sharedPref = getSharedPreferences(TestHelper.SAVED_TEST_STATE, Context.MODE_PRIVATE);
+        sharedPref.edit().putBoolean(TestHelper.IS_THERE_SAVED_TEST, isSaved).apply();
+
     }
 }

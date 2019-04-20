@@ -41,6 +41,10 @@ public class Schedule {
         }
     }
 
+    public boolean isScheduleFinished() {
+        return index >= schedule.size();
+    }
+
     public int getScheduleIndex() {
         return schedule.get(index);
     }

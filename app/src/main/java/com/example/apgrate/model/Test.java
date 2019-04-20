@@ -150,7 +150,7 @@ public class Test implements Serializable {
     private static ArrayList<Question> getQuestions() {
         ArrayList<Question> questions = new ArrayList<>();
         for (int i = 0; i < 30; i++) {
-            Question question = new Question(-1, -1);
+            Question question = new Question(0, 0);
             question.setId(i);
             questions.add(question);
         }
