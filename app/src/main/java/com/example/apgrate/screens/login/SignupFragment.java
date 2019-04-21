@@ -63,10 +63,7 @@ public class SignupFragment extends Fragment {
 
     private void setOnClickListeners() {
 
-        tvGetKey.setOnClickListener(view -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://apgrade.kg"));
-            startActivity(intent);
-        });
+        tvGetKey.setOnClickListener(view -> sendWhatsAppMsg());
 
         btNext.setOnClickListener(view -> {
             String key = etKeyword.getText().toString();
@@ -77,6 +74,14 @@ public class SignupFragment extends Fragment {
                 checkKeyword();
             }
         });
+    }
+
+    private void sendWhatsAppMsg() {
+        String msg = getResources().getString(R.string.signup_whatsapp_msg);
+        String baseUrl = "https://api.whatsapp.com";
+        String endPint = "/send?phone=996222203024&text=";
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(baseUrl + endPint + msg));
+        startActivity(intent);
     }
 
     private void checkKeyword() {
@@ -104,6 +109,7 @@ public class SignupFragment extends Fragment {
 
     private void registerUser() {
         if (getActivity() != null) {
+            mProgressDialog.dismiss();
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, new FillupFragment()).commit();
         }
     }

@@ -20,13 +20,13 @@ public class IntroFragment extends BaseFragment implements ISlideBackgroundColor
     private static final String INTRO_IMAGE = "SlideImage";
     private static final String INTRO_MESSAGE = "SlideMessage";
     private int mImage;
-    private String mMessage;
+    private int mMessageRes;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mImage = getArguments().getInt(INTRO_IMAGE);
-        mMessage = getArguments().getString(INTRO_MESSAGE);
+        mMessageRes = getArguments().getInt(INTRO_MESSAGE);
     }
 
     @Nullable
@@ -36,18 +36,18 @@ public class IntroFragment extends BaseFragment implements ISlideBackgroundColor
         ImageView imageView = v.findViewById(R.id.iv_icon);
         imageView.setImageResource(mImage);
         TextView textView = v.findViewById(R.id.tv_message);
-        textView.setText(mMessage);
+        textView.setText(getResources().getText(mMessageRes));
 
         return v;
     }
 
-    public static Fragment getInstance(@Nullable Integer imageResource, @NonNull String message) {
+    public static Fragment getInstance(@Nullable Integer imageResource, @NonNull int res) {
 
         Bundle bundle = new Bundle();
         if (imageResource != null) {
             bundle.putInt(IntroFragment.INTRO_IMAGE, imageResource);
         }
-        bundle.putString(IntroFragment.INTRO_MESSAGE, message);
+        bundle.putInt(IntroFragment.INTRO_MESSAGE, res);
         Fragment fragment = new IntroFragment();
         fragment.setArguments(bundle);
 

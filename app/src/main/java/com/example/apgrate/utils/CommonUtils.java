@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.animation.AccelerateInterpolator;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -109,35 +110,44 @@ public class CommonUtils {
         TextView title = dialog.findViewById(R.id.tv_title);
         title.setText(activity.getResources().getString(R.string.dialog_choose_lang_title));
 
-        RadioGroup group = dialog.findViewById(R.id.rg_languages);
+        LinearLayout linearLayout = dialog.findViewById(R.id.ll_languages);
+        RadioGroup group = new RadioGroup(dialog.getContext());
+        group.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.addView(group);
 
-        RadioButton rbtKg = new RadioButton(activity);
-        rbtKg.setId((int) 1);
+        RadioButton rbtKg = new RadioButton(dialog.getContext());
+        rbtKg.setId((int) 100);
         rbtKg.setText(activity.getResources().getString(R.string.dialog_choose_lang_btn_kg));
         group.addView(rbtKg);
 
-        RadioButton rbtRu = new RadioButton(activity);
-        rbtKg.setId((int) 2);
+        RadioButton rbtRu = new RadioButton(dialog.getContext());
+        rbtRu.setId((int) 101);
         rbtRu.setText(activity.getResources().getString(R.string.dialog_choose_lang_btn_ru));
         group.addView(rbtRu);
 
+        SharedPreferences shP = activity.getSharedPreferences(BaseActivity.CONFIG_LANGUAGE, Context.MODE_PRIVATE);
+
         final String[] lang = {"ky"};
         RadioGroup.OnCheckedChangeListener listener = (group1, checkedId) -> {
-            lang[0] = checkedId == 1 ? "ru" : "ky";
-            Log.d("MylogChosen", lang[0]);
+            lang[0] = checkedId == rbtKg.getId() ? "ky" : "ru";
+            Log.d("MylogChosen", checkedId + " - " + lang[0]);
         };
 
         group.setOnCheckedChangeListener(listener);
-        rbtKg.toggle();
+        String chosenLang = shP.getString(BaseActivity.CURRENT_LANGUAGE, "ky");
+        if (chosenLang != null && chosenLang.equals("ky")) {
+            rbtKg.toggle();
+        } else {
+            rbtRu.toggle();
+        }
 
         TextView button = dialog.findViewById(R.id.tv_choose);
         button.setOnClickListener(v -> {
-            dialog.dismiss();
-            SharedPreferences shP = activity.getSharedPreferences(BaseActivity.CONFIG_LANGUAGE, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = shP.edit();
             editor.putString(BaseActivity.CURRENT_LANGUAGE, lang[0]);
             editor.apply();
             editor.commit();
+            dialog.dismiss();
             activity.recreate();
         });
 

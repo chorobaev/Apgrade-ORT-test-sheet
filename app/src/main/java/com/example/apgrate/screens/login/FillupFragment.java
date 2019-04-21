@@ -1,5 +1,6 @@
 package com.example.apgrate.screens.login;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,6 +25,7 @@ public class FillupFragment extends Fragment {
     private Button btSingUp;
     private LoginViewModel mViewModel;
     private FragmentActivity mActivity;
+    private ProgressDialog mProgressDialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +35,10 @@ public class FillupFragment extends Fragment {
             mActivity = getActivity();
         }
         mViewModel = ViewModelProviders.of(mActivity).get(LoginViewModel.class);
+
+        mProgressDialog = new ProgressDialog(getContext());
+        mProgressDialog.setMessage(getResources().getString(R.string.dialog_progress_logging_in_msg));
+        mProgressDialog.setCanceledOnTouchOutside(false);
     }
 
     @Nullable
@@ -52,7 +58,10 @@ public class FillupFragment extends Fragment {
     }
 
     private void setOnClickListeners() {
-        btSingUp.setOnClickListener(v -> checkAndRegisterNewUser());
+        btSingUp.setOnClickListener(v -> {
+            mProgressDialog.show();
+            checkAndRegisterNewUser();
+        });
     }
 
     private void checkAndRegisterNewUser() {

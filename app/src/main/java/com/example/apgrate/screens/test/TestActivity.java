@@ -16,6 +16,7 @@ import com.example.apgrate.helper.Common;
 import com.example.apgrate.helper.TestHelper;
 import com.example.apgrate.model.MiniTest;
 import com.example.apgrate.model.Test;
+import com.example.apgrate.model.User;
 import com.example.apgrate.screens.ApgradeApp;
 import com.example.apgrate.utils.BaseActivity;
 import com.example.apgrate.utils.CommonUtils;
@@ -67,6 +68,7 @@ public class TestActivity extends BaseActivity {
 
         mViewModel.getIsTestFinished().observe(this, isTestFinished -> {
             if (isTestFinished) {
+                updateActionBarForResult();
                 mFragmentManager.beginTransaction().replace(R.id.fl_test_container, new ResultFragment()).commit();
                 fabNext.setImageResource(R.drawable.hand_okay);
                 fabNext.setOnClickListener(v -> leaveTest());
@@ -88,6 +90,24 @@ public class TestActivity extends BaseActivity {
             }
             mViewModel.startNextSection();
         });
+
+        mViewModel.getIsResultSaved().observe(this, isResultSaved -> {
+            if (isResultSaved != null && isResultSaved) {
+                    incrementUserAttempts();
+            }
+        });
+    }
+
+    private void updateActionBarForResult() {
+        tvCategory.setText(getResources().getText(R.string.test_category_result));
+        tvTimer.setText("");
+    }
+
+    private void incrementUserAttempts() {
+        ApgradeApp app = (ApgradeApp) getApplication();
+        User currentUser = app.getCurrentUser();
+        currentUser.setLeftAttemptions(currentUser.getLeftAttemptions() - 1);
+        app.setCurrentUser(currentUser);
     }
 
     private void setTitleCategory(MiniTest.Category category) {

@@ -62,7 +62,6 @@ public class RVTestsAdapter extends RecyclerView.Adapter<RVTestsAdapter.TestView
 
     class TestViewHolder extends RecyclerView.ViewHolder {
         TextView tvTestName;
-        TextView tvTestStatus;
         ImageView ivStatus;
         View view;
 

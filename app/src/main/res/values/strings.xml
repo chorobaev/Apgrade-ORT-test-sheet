@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name" translatable="false">Apgrade</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
     <string name="action_settings">Language</string>
 
     <string name="intro_btn_skip">Skip</string>
@@ -16,11 +16,11 @@
 
     <string name="menu_item_tests">Tests</string>
     <string name="menu_item_rating">Rating</string>
-    <string name="menu_item_admin">Admin</string>
+    <string name="menu_item_admin" translatable="false">Admin</string>
     <string name="menu_item_exit">Exit</string>
     <string name="menu_section_others">Other</string>
-    <string name="signup_msg_information">Enter the secret key in order to use this app or try one more test.</string>
-    <string name="signup_btn_signup">Sign up</string>
+    <string name="signup_msg_information">Enter the secret key in order to use this app.</string>
+    <string name="signup_btn_signup">Sign in</string>
     <string name="signup_et_hint_keyword">keyword</string>
     <string name="singup_msg_get_access_expo">Don’t you have a password?</string>
     <string name="signup_msg_get_keyword_clickable">Get access keyword</string>
@@ -30,6 +30,7 @@
     <string name="signup_et_region">Region</string>
     <string name="signup_et_school">School</string>
     <string name="signup_btn_next">Next</string>
+    <string name="signup_whatsapp_msg">I want to have a promo ORT test</string>
 
     <string name="toast_empty_key">Please enter a key.</string>
     <string name="toast_empty_entries">Please fill all fields.</string>
@@ -43,15 +44,9 @@
     <string name="test_category_language1">Language 1</string>
     <string name="test_category_language2">Language 2</string>
     <string name="test_category_language3">Language 3</string>
+    <string name="test_category_result">Your results</string>
 
-    <string name="test_msg_result">
-        Math 1: %d in %d\n
-        Math 2: %d in %d\n
-        Language 1: %d in %d\n
-        Language 2: %d in %d\n
-        Language 3: %d in %d\n
-        All: %d in %d
-    </string>
+    <string name="test_msg_result" translatable="false">\n Math 1: %d in %d\n\n Math 2: %d in %d\n\n Language 1: %d in %d\n\n Language 2: %d in %d\n\n Language 3: %d in %d\n\n All: %d in %d</string>
     <string name="test_break_msg_hint">Have a rest for few minutes!</string>
     <string-array name="test_break_hints">
         <item>Have a rest for few minutes!</item>
@@ -76,5 +71,9 @@
     <string name="dialog_choose_lang_title" translatable="false">Выберите язык / Тилди танданыз</string>
 
     <string name="main_msg_you_are_offline">You are offline \nTry again</string>
+    <string name="nav_header_left_attempts_msg">Your left attempts is %d</string>
+    <string name="test_result_column_chapter">Chapter:</string>
+    <string name="test_result_column_marks">Marks:</string>
+    <string name="test_category_all">All</string>
 
 </resources>

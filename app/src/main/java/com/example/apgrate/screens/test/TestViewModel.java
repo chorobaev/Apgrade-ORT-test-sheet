@@ -1,22 +1,17 @@
 package com.example.apgrate.screens.test;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.example.apgrate.data.firebase.UserRepository;
 import com.example.apgrate.data.room.AppDatabase;
-import com.example.apgrate.helper.Common;
 import com.example.apgrate.helper.TestHelper;
 import com.example.apgrate.model.MiniTest;
 import com.example.apgrate.model.Schedule;
 import com.example.apgrate.model.Test;
 import com.example.apgrate.model.TestResult;
 import com.example.apgrate.model.TestState;
-import com.example.apgrate.screens.ApgradeApp;
 import com.example.apgrate.utils.BaseViewModel;
 import com.example.apgrate.utils.CommonUtils;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.database.DataSnapshot;
 
 import androidx.lifecycle.LiveData;
@@ -30,8 +25,9 @@ public class TestViewModel extends BaseViewModel {
     private MutableLiveData<MiniTest.Category> currentTestCategory = new MutableLiveData<>();
     private MutableLiveData<Boolean> isTestFinished = new MutableLiveData<>();
     private MutableLiveData<Integer> leftTime = new MutableLiveData<>();
-    private CommonUtils.TestTimer timer = new CommonUtils.TestTimer();
     private MutableLiveData<Boolean> isBreakTime = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isResultSaved = new MutableLiveData<>();
+    private CommonUtils.TestTimer timer = new CommonUtils.TestTimer();
     private Schedule schedule = new Schedule();
 
     void init() {
@@ -39,6 +35,7 @@ public class TestViewModel extends BaseViewModel {
         currentTestCategory.setValue(MiniTest.Category.MATH_1);
         isTestFinished.setValue(false);
         isBreakTime.setValue(false);
+        isResultSaved.setValue(null);
 
         CommonUtils.OnTimerListener listener = new CommonUtils.OnTimerListener() {
             @Override
@@ -83,8 +80,8 @@ public class TestViewModel extends BaseViewModel {
         return TestHelper.countTestResult(currentTest.getValue(), actualTest.getValue());
     }
 
-    void saveTestResults(TestResult testResult, OnCompleteListener<Void> onCompleteListener) {
-        userRepo.saveTestResults(testResult, onCompleteListener);
+    void saveTestResults(TestResult testResult) {
+        userRepo.saveTestResults(testResult, task -> isResultSaved.setValue(task.isSuccessful()));
     }
 
     void startNextSection() {
@@ -158,6 +155,10 @@ public class TestViewModel extends BaseViewModel {
 
     LiveData<Boolean> getIsBreakTime() {
         return isBreakTime;
+    }
+
+    LiveData<Boolean> getIsResultSaved() {
+        return isResultSaved;
     }
 
     void saveTestState(AppDatabase db) {

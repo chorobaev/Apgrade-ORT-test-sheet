@@ -49,6 +49,7 @@ public class MainActivity extends BaseActivity
     private User currentUser;
     private TextView tvUser;
     private TextView tvOffline;
+    private TextView tvUserAttempts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,13 @@ public class MainActivity extends BaseActivity
         //if (isNetworkConnected()) {
             initUI();
         //}
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mViewModel.setCurrentUser(((ApgradeApp) getApplication()).getCurrentUser());
     }
 
     private void initUI() {
@@ -81,6 +89,7 @@ public class MainActivity extends BaseActivity
         navigationView.getMenu().performIdentifierAction(R.id.nav_tests, 0);
         View view = navigationView.getHeaderView(0);
         tvUser = view.findViewById(R.id.tv_user_full_name);
+        tvUserAttempts = view.findViewById(R.id.tv_left_attempts);
 
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mViewModel.init();
@@ -96,11 +105,12 @@ public class MainActivity extends BaseActivity
     }
 
     private void fetchAndSetCurrentUser() {
-        new UserRepository().getCurrentUser(user -> {
+        mViewModel.fetchCurrentUser();
+        mViewModel.getCurrentUser().observe(this, user -> {
             currentUser = user;
             ((ApgradeApp) getApplication()).setCurrentUser(user);
 
-            Log.d("MylogCurrUser", user.toString());
+            //Log.d("MylogCurrUser", user.toString());
 
             setObservers();
         });
@@ -128,6 +138,9 @@ public class MainActivity extends BaseActivity
         mViewModel.getCurrentUser(user -> {
             String fullName = user.getFirstname() + " " + user.getSurname();
             tvUser.setText(fullName);
+            String leftAttempts = String.format((String) getResources().getText(R.string.nav_header_left_attempts_msg),
+                    (int) user.getLeftAttemptions());
+            tvUserAttempts.setText(leftAttempts);
         });
     }
 

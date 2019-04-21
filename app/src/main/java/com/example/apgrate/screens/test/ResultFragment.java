@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 public class ResultFragment extends Fragment {
 
-    private TextView tvResult;
+    private TextView tvMath1, tvMath2, tvLang1, tvLang2, tvLang3, tvAll, tvUser;
     private TestViewModel mViewModel;
 
     @Nullable
@@ -30,7 +30,13 @@ public class ResultFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_test_result, container, false);
 
-        tvResult = view.findViewById(R.id.tv_test_result);
+        tvMath1 = view.findViewById(R.id.tv_result_math1);
+        tvMath2 = view.findViewById(R.id.tv_result_math2);
+        tvLang1 = view.findViewById(R.id.tv_result_language1);
+        tvLang2 = view.findViewById(R.id.tv_result_language2);
+        tvLang3 = view.findViewById(R.id.tv_result_language3);
+        tvAll = view.findViewById(R.id.tv_result_all);
+        tvUser = view.findViewById(R.id.tv_user_full_name);
 
         setObservers();
 
@@ -41,20 +47,27 @@ public class ResultFragment extends Fragment {
         mViewModel.getIsTestFinished().observe(this, isTestFinished -> {
             try {
                 if (isTestFinished) {
-                    String resultString = tvResult.getText().toString();
                     TestResult tres = mViewModel.countResult();
+
                     saveTestResults(tres);
-                    String result = String.format(resultString,
-                            (int)tres.getMath1(), (int)tres.getMaxMath1(),
-                            (int)tres.getMath2(), (int)tres.getMaxMath2(),
-                            (int)tres.getLanguage1(), (int)tres.getMaxLanguage1(),
-                            (int)tres.getLanguage2(), (int)tres.getMaxLanguage2(),
-                            (int)tres.getLanguage3(), (int)tres.getMaxLanguage3(),
-                            (int)tres.getTotalMarks(), (int)tres.getMaxTotalMarks());
-                    tvResult.setText(result);
+                    tvMath1.setText(String.valueOf((int) tres.getMath1()));
+                    tvMath2.setText(String.valueOf((int) tres.getMath2()));
+                    tvLang1.setText(String.valueOf((int) tres.getLanguage1()));
+                    tvLang2.setText(String.valueOf((int) tres.getLanguage2()));
+                    tvLang3.setText(String.valueOf((int) tres.getLanguage3()));
+                    tvAll.setText(String.valueOf((int) tres.getTotalMarks()));
+                    tvUser.setText(tres.getUserFullName());
                 }
             } catch (Exception e) {
                 Log.d("MylogErrFrag", e.getMessage());
+            }
+        });
+
+        mViewModel.getIsResultSaved().observe(this, isResultSaved -> {
+            if (isResultSaved != null) {
+                String resultMsg = isResultSaved ? getResources().getString(R.string.toast_test_result_saving_success)
+                        : getResources().getString(R.string.toast_test_result_saving_failed);
+                CommonUtils.makeLongToast(getActivity(), resultMsg);
             }
         });
     }
@@ -74,12 +87,7 @@ public class ResultFragment extends Fragment {
         String extraInfo = user.getRegion() + ", " + user.getSchool();
         testResult.setRegionAndSchool(extraInfo);
 
-        mViewModel.saveTestResults(testResult, task -> {
-            String resultMsg = task.isSuccessful() ? getResources().getString(R.string.toast_test_result_saving_success)
-                    : getResources().getString(R.string.toast_test_result_saving_failed);
-
-            CommonUtils.makeLongToast(getActivity(), resultMsg);
-        });
+        mViewModel.saveTestResults(testResult);
     }
 
     @Override
