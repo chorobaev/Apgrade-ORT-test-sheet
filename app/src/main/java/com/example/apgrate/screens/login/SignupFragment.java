@@ -77,6 +77,7 @@ public class SignupFragment extends Fragment {
     }
 
     private void sendWhatsAppMsg() {
+        mProgressDialog.show();
         String msg = getResources().getString(R.string.signup_whatsapp_msg);
         String baseUrl = "https://api.whatsapp.com";
         String endPint = "/send?phone=996222203024&text=";
