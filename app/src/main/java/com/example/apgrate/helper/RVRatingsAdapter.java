@@ -50,7 +50,11 @@ public class RVRatingsAdapter extends RecyclerView.Adapter<RVRatingsAdapter.Rati
     }
 
     public void updateData(ArrayList<TestResult> results) {
-        this.results = results;
+        if (results == null) {
+            this.results = new ArrayList<>();
+        } else  {
+            this.results = results;
+        }
         notifyDataSetChanged();
     }
 

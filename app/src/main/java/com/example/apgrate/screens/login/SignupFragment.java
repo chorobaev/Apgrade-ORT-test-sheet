@@ -28,18 +28,13 @@ public class SignupFragment extends Fragment {
     private Button btNext;
     private EditText etKeyword;
     private LoginViewModel mViewModel;
-    private FragmentActivity mActivity;
     private ProgressDialog mProgressDialog;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getActivity() != null) {
-            mActivity = getActivity();
-        } else {
-            throw new NullPointerException("Fragment is not hosted");
-        }
-        mViewModel = ViewModelProviders.of(mActivity).get(LoginViewModel.class);
+
+        mViewModel = ViewModelProviders.of(getActivity()).get(LoginViewModel.class);
 
         mProgressDialog = new ProgressDialog(getContext());
         mProgressDialog.setMessage(getResources().getString(R.string.dialog_progress_logging_in_msg));
@@ -112,6 +107,15 @@ public class SignupFragment extends Fragment {
         if (getActivity() != null) {
             mProgressDialog.dismiss();
             getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fl_container, new FillupFragment()).commit();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if (mProgressDialog.isShowing()) {
+            mProgressDialog.hide();
         }
     }
 }

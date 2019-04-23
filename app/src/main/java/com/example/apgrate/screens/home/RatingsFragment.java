@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.apgrate.R;
 import com.example.apgrate.helper.RVRatingsAdapter;
@@ -18,12 +19,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class RatingsFragment extends Fragment {
+public class RatingsFragment extends Fragment{
 
     private MainViewModel mViewModel;
     private RecyclerView mRecyclerView;
     private RVRatingsAdapter mAdapter;
+    private ArrayList<TestResult> mResults;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,9 +39,9 @@ public class RatingsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_ratings, container, false);
+        View view = inflater.inflate(R.layout.fragment_tests, container, false);
 
-        mRecyclerView = view.findViewById(R.id.rv_ratings);
+        mRecyclerView = view.findViewById(R.id.rv_tests);
         mAdapter = new RVRatingsAdapter(getContext());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(layoutManager);
@@ -51,14 +55,14 @@ public class RatingsFragment extends Fragment {
 
     private void setObservers() {
         mViewModel.getRatings().observe(this, dataSnapshot -> {
-            ArrayList<TestResult> testResults = new ArrayList<>();
+            mResults = new ArrayList<>();
 
             for (DataSnapshot d : dataSnapshot.getChildren()) {
                 TestResult result = d.getValue(TestResult.class);
-                testResults.add(0, result);
+                mResults.add(0, result);
             }
 
-            mAdapter.updateData(testResults);
+            mAdapter.updateData(mResults);
         });
     }
 }

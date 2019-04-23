@@ -20,11 +20,10 @@ public class ApgradeApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        //FirebaseDatabase.getInstance().getReference().child("users").keepSynced(true);
-        //FirebaseDatabase.getInstance().getReference().child("tests").keepSynced(true);
-        //FirebaseDatabase.getInstance().getReference().child("results").keepSynced(true);
-
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        FirebaseDatabase.getInstance().getReference().child("users").keepSynced(true);
+        FirebaseDatabase.getInstance().getReference().child("tests").keepSynced(true);
+        FirebaseDatabase.getInstance().getReference().child("results").keepSynced(true);
     }
 
     public User getCurrentUser() throws NullPointerException{

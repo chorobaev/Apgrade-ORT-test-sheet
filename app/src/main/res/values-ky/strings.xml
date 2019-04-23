@@ -5,7 +5,7 @@
     <string name="dialog_ok_btn">МАКУЛ</string>
     <string name="dialog_no_btn">ЖОК</string>
     <string name="menu_item_tests">Тесттер</string>
-    <string name="menu_item_rating">Жетишендик тизмеси</string>
+    <string name="menu_item_rating">Жетишкендиктер</string>
     <string name="menu_item_exit">Чыгуу</string>
     <string name="menu_section_others">Башка</string>
     <string name="signup_msg_information">Системага кирүү үчүн сыр сөздү жазыңыз</string>
@@ -28,7 +28,7 @@
     <string name="signup_et_name">Аты</string>
     <string name="signup_et_region">Район</string>
     <string name="signup_et_school">Мектеп</string>
-    <string name="signup_btn_next">Кийинки</string>
+    <string name="signup_btn_next">Кирүү</string>
     <string name="toast_empty_key">Сураныч, сыр сөздү жазыңыз!</string>
     <string name="toast_empty_entries">Сураныч, бардык жерлерди толтуруңуз!</string>
     <string name="toast_not_valid_key">Мындай сыр сөз жок!</string>
@@ -38,7 +38,7 @@
     <string name="test_category_result">Тест жыйынтыгы</string>
     <string name="test_break_msg_hint">Бир аз эс алып алыңыз…</string>
     <string name="dialog_start_test_title">Тестти баштоодон мурун:</string>
-    <string name="dialog_start_test_msg">Суроо китепчениз даярбы? Сынамык тестти иштеп чыгуу учун чыныгы ЖРТнын эрежесине ылайык 3 саат 35 мүнөт керектелет. Баштоого макулсузбу? Эгерде жок болсо, анда суроо китепчени даярдап бош убактынызда жазыныз!</string>
+    <string name="dialog_start_test_msg">Сынамык тестти тапшыруу үчүн тесттин суроолору жана чыныгы ЖРТнын эрежесине ылайык 3 саат 35 мүнөт керектелет. Баштоого макулсузбу?</string>
     <string name="dialog_leave_test_msg">Тесттен чыксаңыз баардык белгилөөр өчөт. Чындап тесттен чыккыңыз келкби?</string>
     <string name="dialog_finish_current_mini_test_msg">Чыныгы тестте кийнки бөлүмгө убактысынан мурда өтүүгө болбойт. Чындап өткүңүз келеби?</string>
     <string name="dialog_start_next_test_msg">Кийинки бөлүмдү баштайсызбы?</string>
@@ -46,12 +46,16 @@
     <string name="main_msg_you_are_offline">Интернет байланышы жок</string>
     <string name="nav_header_left_attempts_msg">Тест тапшыруу мүмкүнчүлүгүңүз: %d</string>
     <string name="signup_whatsapp_msg">Саламатсызбы. Мен сынамык тест тапшырайын дегем.</string>
-    <string name="intro_second_message">Жалпы республикалык тестирлөөгө даярдык. www.apgrade.kg сенин тандооң сенин ийгилигиң! ⠀ Урматтуу бүтүрүүчү ЖРТдан жакшы балл алууну каалайсыңбы? ЖРТ түшүнүктөрү башыңды айлантып жатабы? Кошумча курска барууну ойлонуп, мүмкүнчүлүк таба албай жатасыңбы? ЖРТдан коркуп жатасыңбы? Убакыттын аз калганы сени түйшөлтүп жатабы? ⠀ Анда бизге кел сен үчүн эң туура вариант www.apgrade.kg</string>
-    <string name="intro_third_message">Убакытты туура пайдалануу Системалуу даярдануу Видео сабактар 24 саат мүмкүнчүлүк Тапшырмалар, түшүндүрмө сабактар Бөлүм аралык экзамендик суроолор Өз алдынча бат жана мыкты даярдануу Сынамык тесттер Жакшы мүмкүнчүлүк жаңы ийгилик! Бүгүн кылган аракетиң эртеңки келечегиң Акыркы мүмкүнчүлүктү колдон чыгарбай даярданып калыңыз!</string>
-    <string name="intro_fourth_message">ЖРТ тестин тапшырганы саналуу убакыттар калды бирок дагы деле кеч эмес бир сыйра кайталап жакшы даярданып жетишсениз болот. Шашылыңыз! Негизги тест толук курстун баасы(1-бөлүмдөр акысыз): 500сом Каталуу үчүн: 0(554)-(773)-(700)-854775 0776400580 WhatsApp (ссылка койуп койолу(Мен курс тууралуу маалымат алайын дегем. Кантип катталсам болот?)) ссылканы басыңыз.</string>
+    <string name="intro_second_message">Досторуң менен бирге даярдан, атаандаш</string>
     <string name="test_result_column_chapter">Бөлүм:</string>
     <string name="test_result_column_marks">Балл:</string>
     <string name="test_category_all">Жалпы</string>
-    <string name="intro_first_message">Жалпы республикалык тестирлөөдөн жогору балл алуу үчүн ЖРТ(ОРТ)нын ар бир бөлүмүнө жакшы даярданып андан кийин ЖРТнын эрежелерине ылайын көбүрөөк сынамык тест иштөө керек! Сиз бул колдонмонун жардамы менен сынамык тест тапшырып ЖРТ(ОРТ)га дагы да эффективдүү даярданасыз!</string>
+    <string name="intro_first_message">Жалпы республикалык тестти каалаган учурда, каалаган жерде тапшырып көр</string>
+    <string name="intro_third_message">ЖРТны мыкты тапшырып, кыялдарыңды орундат!</string>
+
+    <string-array name="test_break_hints">
+        <item>Have a rest for few minutes!</item>
+        <item>Resting is key of the success</item>
+    </string-array>
 
 </resources>

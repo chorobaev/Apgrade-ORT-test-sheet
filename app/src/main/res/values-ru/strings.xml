@@ -4,7 +4,7 @@
     <string name="menu_item_rating">Рейтинг</string>
     <string name="menu_item_exit">Выход</string>
     <string name="menu_section_others">Другие</string>
-    <string name="signup_msg_information">Чтобы зайти в систему введите ключь</string>
+    <string name="signup_msg_information">Чтобы зайти в систему введите ключ</string>
     <string name="signup_btn_signup">Войти</string>
     <string name="test_category_math1">Математика 1</string>
     <string name="test_category_math2">Математика 2</string>
@@ -19,7 +19,7 @@
     <string name="dialog_ok_btn">ОК</string>
     <string name="dialog_yes_btn">ДА</string>
     <string name="intro_btn_skip">Пропустить</string>
-    <string name="intro_btn_done">Готова</string>
+    <string name="intro_btn_done">Готово</string>
     <string name="signup_et_hint_keyword">Код доступа</string>
     <string name="singup_msg_get_access_expo">У вас нет ключа?</string>
     <string name="signup_msg_get_keyword_clickable">Получить код доступа</string>
@@ -44,8 +44,12 @@
     <string name="dialog_progress_logging_in_msg">Подождите…</string>
     <string name="main_msg_you_are_offline">Нет потключение к интернету</string>
     <string name="nav_header_left_attempts_msg">Ваши попытки сдать тест: %d</string>
-    <string name="signup_whatsapp_msg">Здравствуйте. Я хотел узнать о пробном тесте?</string>
+    <string name="signup_whatsapp_msg">"Здравствуйте. Я хотел узнать о пробном тесте. "</string>
     <string name="test_result_column_chapter">Раздел:</string>
     <string name="test_result_column_marks">Балл:</string>
     <string name="test_category_all">Общий</string>
+    <string name="intro_first_message">Сдавай ОРТ где угодно и когда угодно</string>
+    <string name="intro_second_message">Соревнуйся и готовься вместе с друзьями</string>
+    <string name="intro_third_message">Добейся лучших результатов и воплоти в жизнь все свои мечты!</string>
+    <string name="dialog_start_test_msg">По правилам ОРТ для прохождения этого теста требуется 3 часа 35 минут. Для сдачи данного теста у вас должны быть готовы тестовые вопросы. Готовы начать?</string>
 </resources>

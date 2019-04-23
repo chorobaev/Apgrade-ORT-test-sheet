@@ -58,10 +58,10 @@ public class IntroActivity extends AppIntro {
     private void initUI() {
         setSkipText(getResources().getString(R.string.intro_btn_skip));
         setDoneText(getResources().getString(R.string.intro_btn_done));
-        addSlide(IntroFragment.getInstance(R.drawable.apgrade_white, R.string.intro_first_message));
-        addSlide(IntroFragment.getInstance(R.drawable.apgrade_white, R.string.intro_second_message));
-        addSlide(IntroFragment.getInstance(R.drawable.apgrade_white, R.string.intro_third_message));
-        addSlide(IntroFragment.getInstance(R.drawable.apgrade_white, R.string.intro_fourth_message));
+        addSlide(IntroFragment.getInstance(R.drawable.apgrade_intro_logo, R.string.intro_first_message));
+        addSlide(IntroFragment.getInstance(R.drawable.apgrade_intro_logo, R.string.intro_second_message));
+        addSlide(IntroFragment.getInstance(R.drawable.apgrade_intro_logo, R.string.intro_third_message));
+        //addSlide(IntroFragment.getInstance(R.drawable.apgrade_intro_logo, R.string.intro_fourth_message));
     }
 
     @Override

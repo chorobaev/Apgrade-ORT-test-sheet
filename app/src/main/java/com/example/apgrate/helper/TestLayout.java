@@ -107,7 +107,7 @@ public class TestLayout extends LinearLayout{
 
     private void createVariantsTitleAndAdd() {
         TextView textView = new TextView(mActivity);
-        textView.setText("A     B     C     D     E");
+        textView.setText(mActivity.getResources().getText(R.string.test_header_variants));
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         textView.setTextColor(mActivity.getResources().getColor(R.color.colorBlack));
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);

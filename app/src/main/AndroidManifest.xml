@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".screens.RoomTest" />
-        <activity android:name=".screens.test.TestActivity" />
+        <activity android:name=".screens.test.TestActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity android:name=".screens.login.LoginActivity" />
         <activity
             android:name=".screens.home.MainActivity"
