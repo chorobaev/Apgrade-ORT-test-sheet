@@ -17,12 +17,11 @@
     <string name="test_category_language3">Грамматика</string>
     <string name="action_settings">Тилди алмаштыруу</string>
     <string name="dialog_title_warning">Көңүл буруңуз</string>
-    <string name="dialog_choose_btn">ТАНДОО</string>
     <string name="intro_btn_skip">Түшүндүм</string>
     <string name="intro_btn_done">ОК</string>
     <string name="signup_et_hint_keyword">Сыр сөз</string>
     <string name="singup_msg_get_access_expo">Сыр сөзүңүз жокпу?</string>
-    <string name="signup_msg_get_keyword_clickable">Сыр сөз алуу</string>
+    <string name="signup_msg_get_keyword_clickable">Сыр сөздү алуу</string>
     <string name="signup_msg_try_free">Акысыз колдонуу</string>
     <string name="signup_et_surename">Фамилия</string>
     <string name="signup_et_name">Аты</string>
@@ -46,7 +45,7 @@
     <string name="main_msg_you_are_offline">Интернет байланышы жок</string>
     <string name="nav_header_left_attempts_msg">Тест тапшыруу мүмкүнчүлүгүңүз: %d</string>
     <string name="signup_whatsapp_msg">Саламатсызбы. Мен сынамык тест тапшырайын дегем.</string>
-    <string name="intro_second_message">Досторуң менен бирге даярдан, атаандаш</string>
+    <string name="intro_second_message">Досторуң менен бирге даярдан, атандаш!</string>
     <string name="test_result_column_chapter">Бөлүм:</string>
     <string name="test_result_column_marks">Балл:</string>
     <string name="test_category_all">Жалпы</string>
@@ -54,8 +53,23 @@
     <string name="intro_third_message">ЖРТны мыкты тапшырып, кыялдарыңды орундат!</string>
 
     <string-array name="test_break_hints">
-        <item>Have a rest for few minutes!</item>
-        <item>Resting is key of the success</item>
+        <item>Эгер сен азыр уктап кетсең, анда сага, албетте, кыялың түшүңө кирет. Эгерде, уйкунун ордуна, сен окууну тандасаң, анда сен кыялыңды ишке ашырасың.</item>
+        <item>Сен өтө кеч деп ойлогонуң менен чындыгында дагы эрте.</item>
+        <item>Окуу азабы, болгону убактылуу. Билимсиздин азабы – түбөлүк.</item>
+        <item>Билим – ал убакыт эмес. Билим – ал күч.</item>
+        <item>Өмүр – ал окуу гана эмес, бирок эгер өмүрдүн ушул бөлүгүнөн да өтө албасаң анда эмнеге жөндөмүң бар?</item>
+        <item>Күч менен кубат салып окугандан ырахат алышың мүмкүн.</item>
+        <item>Болгону эрте жасаган, болгону күч салган адам гана өзүнүн жетиштиги менен өзгөчө кубана алат.</item>
+        <item>Барына үлгүрүү, ар кимдин колунан келе бербейт. Бирок, ийгилик, өзүн жетилдирүү менен тайманбастык менен бирге келет.</item>
+        <item>Убакыт зымырап барат.</item>
+        <item>Бүгүнкү шилекейлериң, эртеңки көз жаштарың болот.</item>
+        <item>Болочокко бир нерсе сиңирген адамдар – реалисттер.</item>
+        <item>Сенин айлыгың, сенин билимиңдин деңгээли менен теңме-тең.</item>
+        <item>Бүгүн эч качан кайталанбайт.</item>
+        <item>Керек болсо азыр сенин жоолоруң, китептин беттерин ырахаттана ачып жатат.</item>
+        <item>Тердебесең, киреше таппайсың.</item>
     </string-array>
+    <string name="toast_fill_all_fields">Сураныч бардыгын толтуруңуз!</string>
+    <string name="toast_invalid_key">Сыр сөзүңүз туура эмес!</string>
 
 </resources>

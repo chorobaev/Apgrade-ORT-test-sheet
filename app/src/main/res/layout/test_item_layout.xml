@@ -20,14 +20,29 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin">
 
-        <TextView
-            android:id="@+id/tv_test_name"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#444"
-            android:textSize="23sp"
-            tools:text="Test1"/>
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_test_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorSoftBlack"
+                android:textSize="18sp"
+                tools:text="Test1" />
+
+            <TextView
+                android:id="@+id/tv_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                tools:text="Kyrgyzcha" />
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/iv_availability"
@@ -35,12 +50,6 @@
             android:layout_height="wrap_content"
             tools:src="@drawable/lock_outline"/>
 
-        <!--<TextView
-            android:id="@+id/tv_test_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            tools:text="status"/>-->
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

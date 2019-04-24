@@ -1,15 +1,11 @@
 package com.example.apgrate.screens.test;
 
-import android.util.Log;
-
 import com.example.apgrate.data.firebase.UserRepository;
-import com.example.apgrate.data.room.AppDatabase;
 import com.example.apgrate.helper.TestHelper;
 import com.example.apgrate.model.MiniTest;
 import com.example.apgrate.model.Schedule;
 import com.example.apgrate.model.Test;
 import com.example.apgrate.model.TestResult;
-import com.example.apgrate.model.TestState;
 import com.example.apgrate.utils.BaseViewModel;
 import com.example.apgrate.utils.CommonUtils;
 import com.google.firebase.database.DataSnapshot;
@@ -56,7 +52,6 @@ public class TestViewModel extends BaseViewModel {
     void chooseAnswer(int testIndex, int answer) {
         MiniTest.Category category = currentTestCategory.getValue();
         Test test = currentTest.getValue();
-        Log.d("MylogCatAndTest", "" + test + category);
         switch (category) {
             case MATH_1:
                 test.getMathFirst().getQuestions().get(testIndex).setCorrectAnswer(answer);
@@ -103,7 +98,6 @@ public class TestViewModel extends BaseViewModel {
     }
 
     private void nextSection() {
-        //Log.d("MylogSec", "nextSection" + isBreakTime.getValue());
         if (isBreakTime.getValue()) {
             setNextTestCategory();
             isBreakTime.postValue(false);
@@ -159,19 +153,5 @@ public class TestViewModel extends BaseViewModel {
 
     LiveData<Boolean> getIsResultSaved() {
         return isResultSaved;
-    }
-
-    void saveTestState(AppDatabase db) {
-        if (!isTestFinished.getValue()) {
-
-            TestState testState = TestHelper.fromTest(currentTest.getValue());
-            testState.setCurrentTestIndex(schedule.getScheduleIndex());
-            testState.setLeftTime(leftTime.getValue());
-
-
-            db.testStateDao().insertTestState(testState);
-
-            Log.d("MylogTestState", "Test state saved");
-        }
     }
 }

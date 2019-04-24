@@ -5,8 +5,6 @@ import com.example.apgrate.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.database.DataSnapshot;
 
-import java.util.ArrayList;
-
 import androidx.lifecycle.LiveData;
 
 public interface FirebaseUserRepository {

@@ -1,7 +1,6 @@
 package com.example.apgrate.helper;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,7 +74,7 @@ public class RVRatingsAdapter extends RecyclerView.Adapter<RVRatingsAdapter.Rati
             itemView.setClickable(true);
 
             itemView.setOnClickListener(view -> {
-                Log.d(TAG, "Item clicked " + getPosition());
+                // TODO: implement click event
             });
         }
 

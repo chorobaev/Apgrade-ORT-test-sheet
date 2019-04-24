@@ -19,30 +19,12 @@ public class Schedule {
         schedule.add(3600);
         schedule.add(300);
         schedule.add(2100);
-
-        /*schedule.add(4);
-        schedule.add(4);
-        schedule.add(4);
-        schedule.add(4);
-        schedule.add(4);
-        schedule.add(4);
-        schedule.add(4);
-        schedule.add(4);
-        schedule.add(4);*/
-    }
-
-    public void setInitialState() {
-
     }
 
     public void next() {
         if (index < schedule.size()) {
             index++;
         }
-    }
-
-    public boolean isScheduleFinished() {
-        return index >= schedule.size();
     }
 
     public int getScheduleIndex() {

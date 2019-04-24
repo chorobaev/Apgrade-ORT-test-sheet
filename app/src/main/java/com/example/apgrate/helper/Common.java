@@ -27,4 +27,24 @@ public class Common {
     public static String getUidFromEmail(String email) {
         return email.substring(0, email.indexOf('@'));
     }
+
+    public static String getTestLanguageFromName(String testName) {
+        String lang = "";
+        int index = testName.indexOf('@');
+        if (index > 0) {
+            lang = testName.substring(index + 1);
+        }
+
+        return lang;
+    }
+
+    public static String getPureTestName(String testName) {
+        String name = "";
+        int index = testName.indexOf('@');
+        if (index > 0) {
+            name = testName.substring(0, index);
+        }
+
+        return  name;
+    }
 }

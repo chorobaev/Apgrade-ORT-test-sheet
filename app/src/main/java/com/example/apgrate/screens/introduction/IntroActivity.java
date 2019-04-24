@@ -2,12 +2,12 @@ package com.example.apgrate.screens.introduction;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 
 import com.example.apgrate.R;
 import com.example.apgrate.utils.CommonUtils;
@@ -27,6 +27,7 @@ public class IntroActivity extends AppIntro {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setUpLanguage();
         super.onCreate(savedInstanceState);
         initUI();
@@ -39,8 +40,7 @@ public class IntroActivity extends AppIntro {
 
     private void setUpLanguage() {
         SharedPreferences sharedPreferences = getSharedPreferences(CONFIG_LANGUAGE, Context.MODE_PRIVATE);
-        String lang = sharedPreferences.getString(CURRENT_LANGUAGE, "ru");
-        Log.d("MylogShPLang", lang);
+        String lang = sharedPreferences.getString(CURRENT_LANGUAGE, "ky");
 
         Resources res = getResources();
         // Change locale settings in the app.
@@ -58,10 +58,10 @@ public class IntroActivity extends AppIntro {
     private void initUI() {
         setSkipText(getResources().getString(R.string.intro_btn_skip));
         setDoneText(getResources().getString(R.string.intro_btn_done));
+        showStatusBar(false);
         addSlide(IntroFragment.getInstance(R.drawable.apgrade_intro_logo, R.string.intro_first_message));
         addSlide(IntroFragment.getInstance(R.drawable.apgrade_intro_logo, R.string.intro_second_message));
         addSlide(IntroFragment.getInstance(R.drawable.apgrade_intro_logo, R.string.intro_third_message));
-        //addSlide(IntroFragment.getInstance(R.drawable.apgrade_intro_logo, R.string.intro_fourth_message));
     }
 
     @Override

@@ -17,7 +17,6 @@ public class TestHelper {
 
     public static TestResult countTestResult(Test currentTest, Test actualTest) {
         TestResult result = new TestResult();
-        //Log.d("MylogActual", actualTest.toString() + actualTest.getMathFirst());
         result.setMath1(compareAndCount(currentTest.getMathFirst(), actualTest.getMathFirst()));
         result.setMath2(compareAndCount(currentTest.getMathSecond(), actualTest.getMathSecond()));
         result.setLanguage1(compareAndCount(currentTest.getLanguageFirst(), actualTest.getLanguageFirst()));

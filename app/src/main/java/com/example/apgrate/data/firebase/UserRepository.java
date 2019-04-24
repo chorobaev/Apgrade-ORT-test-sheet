@@ -1,7 +1,5 @@
 package com.example.apgrate.data.firebase;
 
-import android.util.Log;
-
 import com.example.apgrate.data.FirebaseUserRepository;
 import com.example.apgrate.helper.Common;
 import com.example.apgrate.helper.FirebaseQueryLiveData;
@@ -47,7 +45,6 @@ public class UserRepository implements FirebaseUserRepository {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
-                Log.d("MylogCatchdUser" ,user.toString());
                 resultListener.onResult(user);
             }
 
@@ -79,7 +76,6 @@ public class UserRepository implements FirebaseUserRepository {
             if (task.isSuccessful()) {
                 saveUser(keyword, user);
                 makeKeywordActive(keyword);
-                Log.d("My log", "Success");
             }
         }).addOnCompleteListener(onCompleteAuthResultListener);
 
@@ -103,8 +99,7 @@ public class UserRepository implements FirebaseUserRepository {
         DatabaseReference results = mDatabase.child("results").push();
         try {
             results.setValue(testResult).addOnCompleteListener(onCompleteListener);
-        } catch (NullPointerException e) {
-            Log.e("MylogOnResultSave", e.getMessage());
+        } catch (NullPointerException ignored) {
         }
         mDatabase.child("users")
                 .child(Common.getUidFromEmail(userAuth.getCurrentUser().getEmail()))

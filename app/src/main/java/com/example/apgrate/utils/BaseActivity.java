@@ -2,12 +2,12 @@ package com.example.apgrate.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 
 import java.util.Locale;
 
@@ -23,10 +23,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         SharedPreferences sharedPreferences = getSharedPreferences(CONFIG_LANGUAGE, Context.MODE_PRIVATE);
-        String lang = sharedPreferences.getString(CURRENT_LANGUAGE, "ru");
-        Log.d("MylogShPLang", lang);
+        String lang = sharedPreferences.getString(CURRENT_LANGUAGE, "ky");
 
         Resources res = getResources();
         // Change locale settings in the app.

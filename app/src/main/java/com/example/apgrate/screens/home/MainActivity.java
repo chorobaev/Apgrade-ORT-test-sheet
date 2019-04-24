@@ -1,12 +1,10 @@
 package com.example.apgrate.screens.home;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
 
-import com.example.apgrate.data.firebase.UserRepository;
+import com.crashlytics.android.Crashlytics;
 import com.example.apgrate.model.Test;
 import com.example.apgrate.model.User;
 import com.example.apgrate.screens.ApgradeApp;
@@ -25,7 +23,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +35,6 @@ import com.google.firebase.database.DataSnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.net.InetAddress;
 import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity
@@ -48,7 +44,6 @@ public class MainActivity extends BaseActivity
     private final int LOGIN_REQUEST_CODE = 111;
     private User currentUser;
     private TextView tvUser;
-    private TextView tvOffline;
     private TextView tvUserAttempts;
 
     @Override
@@ -56,12 +51,7 @@ public class MainActivity extends BaseActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvOffline = findViewById(R.id.tv_no_internet);
-        tvOffline.setOnClickListener(v -> recreate());
-
-        //if (isNetworkConnected()) {
-            initUI();
-        //}
+        initUI();
     }
 
     @Override
@@ -72,7 +62,6 @@ public class MainActivity extends BaseActivity
     }
 
     private void initUI() {
-        tvOffline.setVisibility(View.GONE);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -98,12 +87,6 @@ public class MainActivity extends BaseActivity
         checkFirstRun();
     }
 
-    private boolean isNetworkConnected() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        return cm.getActiveNetworkInfo() != null;
-    }
-
     private void fetchAndSetCurrentUser() {
         mViewModel.fetchCurrentUser();
         mViewModel.getCurrentUser().observe(this, user -> {
@@ -121,16 +104,11 @@ public class MainActivity extends BaseActivity
             ArrayList<Test> tests = new ArrayList<>();
 
             for (DataSnapshot snapshot : testsSnap.getChildren()) {
-                try {
-                    Test test = snapshot.getValue(Test.class);
-                    if (currentUser.getLeftAttemptions() == 0) {
-                        test.setStatus(Test.TestStatus.CLOSED);
-                    }
-                    //Log.d("MylogTests", "" + test);
-                    tests.add(test);
-                }catch (Exception e) {
-                    Log.d("MylogErrCast", e.getMessage());
+                Test test = snapshot.getValue(Test.class);
+                if (test != null && currentUser.getLeftAttemptions() == 0) {
+                    test.setStatus(Test.TestStatus.CLOSED);
                 }
+                tests.add(test);
             }
             mViewModel.setTests(tests);
         });
@@ -167,7 +145,6 @@ public class MainActivity extends BaseActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             CommonUtils.showChooseLanguageDialog(this);
@@ -229,13 +206,11 @@ public class MainActivity extends BaseActivity
 
         } else if (savedVersionCode == DOESNT_EXIST) {
 
-            // TODO This is a new install (or the user cleared the shared preferences)
             Intent intent = new Intent(this, IntroActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             startActivity(intent);
 
         } else if (currentVersionCode > savedVersionCode) {
-
             // TODO This is an upgrade
         }
 

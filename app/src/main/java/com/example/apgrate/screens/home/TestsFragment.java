@@ -17,14 +17,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class TestsFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RVTestsAdapter mAdapter;
     private MainViewModel mViewModel;
-    private ArrayList<Test> mTests;
 
     @Nullable
     @Override
@@ -50,9 +48,7 @@ public class TestsFragment extends Fragment {
     }
 
     private void setObservers() {
-        mViewModel.getTests().removeObservers(this);
         mViewModel.getTests().observe(this, tests -> {
-            mTests = tests;
             mAdapter.updateData(tests);
         });
     }

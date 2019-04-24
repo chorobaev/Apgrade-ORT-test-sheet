@@ -1,39 +1,18 @@
 package com.example.apgrate.model;
 
-import android.util.Log;
-
 import com.example.apgrate.data.room.Converter;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-@Entity
 public class TestState {
 
-    @PrimaryKey
     private int id;
-
-    @ColumnInfo(name = "math1")
     private int[] math1;
-
-    @ColumnInfo(name = "math2")
     private int[] math2;
-
-    @ColumnInfo(name = "language1")
     private int[] language1;
-
-    @ColumnInfo(name = "language2")
     private int[] language2;
-
-    @ColumnInfo(name = "language3")
     private int[] language3;
-
-    @ColumnInfo(name = "current_test_index")
     private int currentTestIndex;
-
-    @ColumnInfo(name = "left_time")
     private int leftTime;
 
 

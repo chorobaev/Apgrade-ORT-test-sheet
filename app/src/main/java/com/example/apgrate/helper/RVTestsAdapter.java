@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import com.example.apgrate.utils.CommonUtils;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RVTestsAdapter extends RecyclerView.Adapter<RVTestsAdapter.TestViewHolder> {
@@ -44,7 +42,8 @@ public class RVTestsAdapter extends RecyclerView.Adapter<RVTestsAdapter.TestView
     @Override
     public void onBindViewHolder(@NonNull TestViewHolder holder, int position) {
         Test test = tests.get(position);
-        holder.tvTestName.setText(test.getName());
+        holder.tvTestName.setText(Common.getPureTestName(test.getName()));
+        holder.tvLanguage.setText(Common.getTestLanguageFromName(test.getName()));
         if (!(test.getStatus() == Test.TestStatus.OPEN)) {
             holder.ivStatus.setImageResource(R.drawable.lock_outline);
         }
@@ -63,19 +62,18 @@ public class RVTestsAdapter extends RecyclerView.Adapter<RVTestsAdapter.TestView
     class TestViewHolder extends RecyclerView.ViewHolder {
         TextView tvTestName;
         ImageView ivStatus;
-        View view;
+        TextView tvLanguage;
 
         TestViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            view = itemView;
             tvTestName = itemView.findViewById(R.id.tv_test_name);
+            tvLanguage = itemView.findViewById(R.id.tv_language);
             ivStatus = itemView.findViewById(R.id.iv_availability);
 
             itemView.setClickable(true);
 
             itemView.setOnClickListener(view -> {
-                Log.d(TAG, "Item clicked " + getPosition());
                 checkTestAvailability();
             });
         }
@@ -87,7 +85,6 @@ public class RVTestsAdapter extends RecyclerView.Adapter<RVTestsAdapter.TestView
                 AlertDialog dialog = new AlertDialog.Builder(mContext).create();
                 dialog.setTitle(mContext.getResources().getString(R.string.dialog_title_warning));
                 dialog.setMessage(mContext.getResources().getString(R.string.dialog_test_not_available_msg));
-                //dialog.setInverseBackgroundForced(true);
                 dialog.setButton(AlertDialog.BUTTON_NEUTRAL,
                         mContext.getResources().getString(R.string.dialog_ok_btn),
                         ((dialog1, which) -> dialog.dismiss()));
@@ -96,7 +93,6 @@ public class RVTestsAdapter extends RecyclerView.Adapter<RVTestsAdapter.TestView
         }
 
         private void gotoTestActivity() {
-            // TODO: implement goto TestActivity
             Intent intent  = new Intent(mContext, TestActivity.class);
             intent.putExtra(TestActivity.ACTUAL_TEST, tests.get(getPosition()));
             mContext.startActivity(intent);

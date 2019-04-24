@@ -3,7 +3,6 @@ package com.example.apgrate.helper;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -81,7 +80,6 @@ public class TestLayout extends LinearLayout{
         int testSize = 0;
         try {
             testSize = ta.getInt(R.styleable.TestLayout_size, 0);
-            Log.d("Mysize", "-> " + testSize);
             createView(context, testSize);
         } finally {
             ta.recycle();
@@ -215,7 +213,6 @@ public class TestLayout extends LinearLayout{
 
     private int[] arrayListToInt(ArrayList<Integer> chose) {
         int[] nums = new int[mTestSize];
-        Log.d("MylogSize", mTestSize + " " + chose.size());
         for (int i = 0; i < mTestSize; i++) {
             if (chose.size() > i) {
                 nums[i] = chose.get(i);

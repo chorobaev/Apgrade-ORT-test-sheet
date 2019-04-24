@@ -37,6 +37,8 @@
     <string name="toast_not_valid_key">Keyword is not exist</string>
     <string name="toast_test_result_saving_success">Your results saved</string>
     <string name="toast_test_result_saving_failed">Failure while saving the results</string>
+    <string name="toast_fill_all_fields">"Please fill all fields."</string>
+    <string name="toast_invalid_key">Invalid key</string>
 
     <string name="test_category_break_time">Break time</string>
     <string name="test_category_math1">Math 1</string>
@@ -45,12 +47,24 @@
     <string name="test_category_language2">Language 2</string>
     <string name="test_category_language3">Language 3</string>
     <string name="test_category_result">Your results</string>
-
     <string name="test_msg_result" translatable="false">\n Math 1: %d in %d\n\n Math 2: %d in %d\n\n Language 1: %d in %d\n\n Language 2: %d in %d\n\n Language 3: %d in %d\n\n All: %d in %d</string>
     <string name="test_break_msg_hint">Have a rest for few minutes!</string>
     <string-array name="test_break_hints">
         <item>Have a rest for few minutes!</item>
         <item>Resting is key of the success</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
     </string-array>
 
     <string name="dialog_start_test_title">Pre-requirements</string>
@@ -67,7 +81,7 @@
     <string name="dialog_no_btn">NO</string>
     <string name="dialog_title_warning">Warning</string>
     <string name="dialog_ok_btn">OK</string>
-    <string name="dialog_choose_btn">CHOOSE</string>
+    <string name="dialog_choose_btn" translatable="false">OK</string>
     <string name="dialog_choose_lang_title" translatable="false">Выберите язык / Тилди танданыз</string>
 
     <string name="main_msg_you_are_offline">You are offline \nTry again</string>

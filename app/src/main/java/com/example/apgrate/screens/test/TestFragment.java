@@ -1,7 +1,6 @@
 package com.example.apgrate.screens.test;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ public class TestFragment extends Fragment {
 
     private TestViewModel mViewModel;
     private TestLayout mTestLayout;
-    private static final String TEXT_SIZE = "size_of_test";
 
     static TestFragment getInstance() {
         return new TestFragment();
@@ -36,16 +34,12 @@ public class TestFragment extends Fragment {
     }
 
     private void setOnClickListeners() {
-        mTestLayout.setOnAnswerClickListener((view, index) -> {
-            Log.d("MylogChosenAnswer", "" +  view.getId());
-            mViewModel.chooseAnswer(index, view.getId());
-        });
+        mTestLayout.setOnAnswerClickListener((view, index) ->
+                mViewModel.chooseAnswer(index, view.getId()));
     }
 
     private void setObservers() {
-        mViewModel.getCurrentTestCategory().observe(this, category -> {
-            mTestLayout.reset();
-        });
+        mViewModel.getCurrentTestCategory().observe(this, category -> mTestLayout.reset());
     }
 
     @Override

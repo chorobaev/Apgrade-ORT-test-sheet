@@ -1,7 +1,6 @@
 package com.example.apgrate.screens.login;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.apgrate.R;
 import com.example.apgrate.utils.BaseActivity;
@@ -9,7 +8,6 @@ import com.example.apgrate.utils.CommonUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
 
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 public class LoginActivity extends BaseActivity {

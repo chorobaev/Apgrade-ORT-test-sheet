@@ -3,18 +3,13 @@ package com.example.apgrate.screens.test;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.example.apgrate.R;
-import com.example.apgrate.data.room.AppDatabase;
 import com.example.apgrate.helper.Common;
-import com.example.apgrate.helper.TestHelper;
 import com.example.apgrate.model.MiniTest;
 import com.example.apgrate.model.Test;
 import com.example.apgrate.model.User;
@@ -33,7 +28,6 @@ public class TestActivity extends BaseActivity {
     private FloatingActionButton fabNext;
     private Test actualTest;
     private boolean isResultsDisplayed = false;
-    private boolean shouldSaveTestState = true;
 
     public static final String ACTUAL_TEST = "ACTUAL_TEST";
 
@@ -57,7 +51,6 @@ public class TestActivity extends BaseActivity {
         mFragmentManager.beginTransaction().add(R.id.fl_test_container, mTestFragment).commit();
 
         actualTest = (Test) getIntent().getSerializableExtra(ACTUAL_TEST);
-        Log.d("MylogTest", actualTest.toString());
         mViewModel.setActualTest(actualTest);
 
         setObservers();
@@ -132,9 +125,7 @@ public class TestActivity extends BaseActivity {
     }
 
     private void setOnClickListeners() {
-        fabNext.setOnClickListener(view -> {
-            askUserToGoOn();
-        });
+        fabNext.setOnClickListener(view -> askUserToGoOn());
     }
 
     private void askUserToGoOn() {
@@ -146,7 +137,6 @@ public class TestActivity extends BaseActivity {
                     break;
 
                 case DialogInterface.BUTTON_NEGATIVE:
-                    //No button clicked
                     // TODO: stay in this activity
                     break;
             }
@@ -190,25 +180,6 @@ public class TestActivity extends BaseActivity {
     }
 
     private void leaveTest() {
-        shouldSaveTestState = false;
-        markSavedTestStateAs(false);
         finish();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        /*if (shouldSaveTestState && !isResultsDisplayed) {
-            ApgradeApp app = ApgradeApp.getInstance();
-            markSavedTestStateAs(true);
-
-            mViewModel.saveTestState(app.getAppDatabase());
-        }*/
-    }
-
-    private void markSavedTestStateAs(boolean isSaved) {
-        SharedPreferences sharedPref = getSharedPreferences(TestHelper.SAVED_TEST_STATE, Context.MODE_PRIVATE);
-        sharedPref.edit().putBoolean(TestHelper.IS_THERE_SAVED_TEST, isSaved).apply();
-
     }
 }

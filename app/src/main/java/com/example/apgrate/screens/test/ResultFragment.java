@@ -1,7 +1,6 @@
 package com.example.apgrate.screens.test;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,8 +57,7 @@ public class ResultFragment extends Fragment {
                     tvAll.setText(String.valueOf((int) tres.getTotalMarks()));
                     tvUser.setText(tres.getUserFullName());
                 }
-            } catch (Exception e) {
-                Log.d("MylogErrFrag", e.getMessage());
+            } catch (Exception ignored) {
             }
         });
 

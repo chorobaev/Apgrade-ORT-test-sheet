@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.view.animation.AccelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -151,17 +150,6 @@ public class CommonUtils {
             activity.recreate();
         });
 
-        dialog.show();
-    }
-
-    public static void showAlertDialog(Context context, String title, String msg, String btn) {
-        android.app.AlertDialog dialog = new android.app.AlertDialog.Builder(context).create();
-        dialog.setTitle(title);
-        dialog.setMessage(msg);
-
-        dialog.setButton(android.app.AlertDialog.BUTTON_NEUTRAL,
-                context.getResources().getString(R.string.dialog_ok_btn),
-                ((dialog1, which) -> dialog.dismiss()));
         dialog.show();
     }
 }

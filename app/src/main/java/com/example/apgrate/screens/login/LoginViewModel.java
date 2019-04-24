@@ -1,13 +1,8 @@
 package com.example.apgrate.screens.login;
 
-import android.util.Log;
-
-import com.example.apgrate.data.FirebaseUserRepository;
 import com.example.apgrate.data.firebase.UserRepository;
 import com.example.apgrate.model.User;
-import com.example.apgrate.utils.BaseViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DataSnapshot;
 
@@ -37,7 +32,6 @@ class LoginViewModel extends ViewModel {
     }
 
     void registerNewUser(User user) {
-        Log.d("My log",  "hhhh");
         user.setUid(keyword.getValue());
         user.setUsername(keyword.getValue() + "@apgrade.kg");
         userRepository.registerUser(user, keyword.getValue());

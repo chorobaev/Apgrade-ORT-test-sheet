@@ -18,12 +18,10 @@ import com.google.firebase.database.DataSnapshot;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 public class SignupFragment extends Fragment {
 
-    //private TextView tvTryForFree;
     private TextView tvGetKey;
     private Button btNext;
     private EditText etKeyword;
@@ -46,7 +44,6 @@ public class SignupFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_signup, container, false);
 
-        //tvTryForFree = view.findViewById(R.id.tv_try_for_free);
         tvGetKey = view.findViewById(R.id.tv_get_keyword_clickable);
         btNext = view.findViewById(R.id.bt_next);
         etKeyword = view.findViewById(R.id.et_keyword);
@@ -86,7 +83,8 @@ public class SignupFragment extends Fragment {
             if (data != null && data.exists()) {
                 signInOrRegister(data);
             } else {
-                CommonUtils.makeShortToast(getContext(), "Key is not valid");
+                mProgressDialog.hide();
+                CommonUtils.makeShortToast(getContext(), getString(R.string.toast_invalid_key));
             }
         });
     }

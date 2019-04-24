@@ -15,7 +15,6 @@
     <string name="action_settings">Поменять язык</string>
     <string name="dialog_no_btn">НЕТ</string>
     <string name="dialog_title_warning">Внимание</string>
-    <string name="dialog_choose_btn">ВЫБРАТЬ</string>
     <string name="dialog_ok_btn">ОК</string>
     <string name="dialog_yes_btn">ДА</string>
     <string name="intro_btn_skip">Пропустить</string>
@@ -49,7 +48,27 @@
     <string name="test_result_column_marks">Балл:</string>
     <string name="test_category_all">Общий</string>
     <string name="intro_first_message">Сдавай ОРТ где угодно и когда угодно</string>
-    <string name="intro_second_message">Соревнуйся и готовься вместе с друзьями</string>
+    <string name="intro_second_message">Соревнуйся и готовься вместе с друзьями!</string>
     <string name="intro_third_message">Добейся лучших результатов и воплоти в жизнь все свои мечты!</string>
     <string name="dialog_start_test_msg">По правилам ОРТ для прохождения этого теста требуется 3 часа 35 минут. Для сдачи данного теста у вас должны быть готовы тестовые вопросы. Готовы начать?</string>
+    <string name="toast_fill_all_fields">Пожалуйста заполните все поля!</string>
+
+    <string-array name="test_break_hints">
+        <item>Если сейчас ты заснешь, то тебе, конечно, приснится твоя мечта. Если же вместо сна ты выберешь учебу, то воплотишь свою мечту в жизнь.</item>
+        <item>Когда ты думаешь, что уже слишком поздно, на самом деле все еще рано.</item>
+        <item>Муки учебы всего лишь временные. Муки незнания — вечны</item>
+        <item>Учеба — это не время. Учеба — это усилие.</item>
+        <item>Жизнь — это не только учеба, но если ты не можешь пройти даже через эту ее часть, то на что ты вообще способен?</item>
+        <item>Напряжение и усилие могут быть удовольствием.</item>
+        <item>Только тот, кто делает все раньше, только тот, кто прилагает усилия, по-настоящему сможет насладиться своим успехом.</item>
+        <item>Во всем процветать дано не каждому. Но успех приходит только с самоусовершенствованием и решительностью.</item>
+        <item>Время летит.</item>
+        <item>Сегодняшние слюни станут завтрашними слезами.</item>
+        <item>Люди, которые вкладывают что-то в будущее, — реалисты.</item>
+        <item>Твоя зарплата прямо пропорциональна твоему уровню образования.</item>
+        <item>Сегодня никогда не повторится.</item>
+        <item>Даже сейчас твои враги жадно листают книги.</item>
+        <item>Если не попотеешь — не заработаешь.</item>
+    </string-array>
+    <string name="toast_invalid_key">Неправельный код доступа!</string>
 </resources>
