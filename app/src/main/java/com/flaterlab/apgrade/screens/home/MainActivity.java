@@ -53,13 +53,6 @@ public class MainActivity extends BaseActivity
         initUI();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        mViewModel.setCurrentUser(((ApgradeApp) getApplication()).getCurrentUser());
-    }
-
     private void initUI() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

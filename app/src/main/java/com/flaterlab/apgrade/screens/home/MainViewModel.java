@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-class MainViewModel extends BaseViewModel {
+public class MainViewModel extends BaseViewModel {
 
     private MutableLiveData<ArrayList<Test>> tests = new MutableLiveData<>();
     private LiveData<DataSnapshot> ratings = new MutableLiveData<>();

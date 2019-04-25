@@ -10,7 +10,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-class LoginViewModel extends ViewModel {
+public class LoginViewModel extends ViewModel {
 
     private final MutableLiveData<String> keyword = new MutableLiveData<>();
     private UserRepository userRepository;
