@@ -1,20 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Apgrade</string>
     <string name="menu_item_tests">Тесты</string>
     <string name="menu_item_rating">Рейтинг</string>
     <string name="menu_item_exit">Выход</string>
     <string name="menu_section_others">Другие</string>
-    <string name="signup_msg_information">Чтобы зайти в систему введите ключь</string>
-    <string name="signup_btn_signup">Зарегистрироваться</string>
+    <string name="signup_msg_information">Чтобы зайти в систему введите ключ</string>
+    <string name="signup_btn_signup">Войти</string>
     <string name="test_category_math1">Математика 1</string>
     <string name="test_category_math2">Математика 2</string>
-    <string name="test_category_language1">Аналогия и Дополнение предложений</string>
+    <string name="test_category_language1">Аналогия и дополнение предложений</string>
     <string name="test_category_language2">Чтение и понимание</string>
     <string name="test_category_language3">Грамматика</string>
     <string name="dialog_test_not_available_msg">Этот тест недоступен для вас.</string>
     <string name="action_settings">Поменять язык</string>
     <string name="dialog_no_btn">НЕТ</string>
     <string name="dialog_title_warning">Внимание</string>
-    <string name="dialog_choose_btn">ВЫБРАТЬ</string>
+    <string name="dialog_ok_btn">ОК</string>
+    <string name="dialog_yes_btn">ДА</string>
+    <string name="intro_btn_skip">Пропустить</string>
+    <string name="intro_btn_done">Готово</string>
+    <string name="signup_et_hint_keyword">Код доступа</string>
+    <string name="singup_msg_get_access_expo">У вас нет ключа?</string>
+    <string name="signup_msg_get_keyword_clickable">Получить код доступа</string>
+    <string name="signup_msg_try_free">Попробовать бесплатно</string>
+    <string name="signup_et_surename">Фамилия</string>
+    <string name="signup_et_name">Имя</string>
+    <string name="signup_et_region">Район</string>
+    <string name="signup_et_school">Школа</string>
+    <string name="signup_btn_next">Далее</string>
+    <string name="toast_empty_key">Пожалуйста, введите код доступа.</string>
+    <string name="toast_empty_entries">Пожалуйста, заполните все поля!</string>
+    <string name="toast_not_valid_key">Неверный код доступа!</string>
+    <string name="toast_test_result_saving_success">Ваш результат сохранен.</string>
+    <string name="toast_test_result_saving_failed">Ощибка при сохранении результатов.</string>
+    <string name="test_category_break_time">Перемена</string>
+    <string name="test_category_result">Результаты теста</string>
+    <string name="test_break_msg_hint">Важно не количество знаний, а качество их. Можно знать очень многое, не зная самого нужного.</string>
+    <string name="dialog_start_test_title">Перед началом теста:</string>
+    <string name="dialog_leave_test_msg">Ели вы покините тест, вы потеряете весь прогресс. Вы точно хотите выйти?</string>
+    <string name="dialog_start_next_test_msg">В оргинальном тесте невозможно пройти следующий раздел раньше времени. Точно хотите перейти?</string>
+    <string name="dialog_finish_current_mini_test_msg">"В оргинальном тесте вы не сможете пройти на следкющий тест раньше времени. "</string>
+    <string name="dialog_progress_logging_in_msg">Подождите…</string>
+    <string name="main_msg_you_are_offline">Нет потключение к интернету</string>
+    <string name="nav_header_left_attempts_msg">Ваши попытки сдать тест: %d</string>
+    <string name="signup_whatsapp_msg">"Здравствуйте. Я хотел узнать о пробном тесте. "</string>
+    <string name="test_result_column_chapter">Раздел:</string>
+    <string name="test_result_column_marks">Балл:</string>
+    <string name="test_category_all">Общий</string>
+    <string name="intro_first_message">Сдавай ОРТ где угодно и когда угодно</string>
+    <string name="intro_second_message">Соревнуйся и готовься вместе с друзьями!</string>
+    <string name="intro_third_message">Добейся лучших результатов и воплоти в жизнь все свои мечты!</string>
+    <string name="dialog_start_test_msg">По правилам ОРТ для прохождения этого теста требуется 3 часа 35 минут. Для сдачи данного теста у вас должны быть готовы тестовые вопросы. Готовы начать?</string>
+    <string name="toast_fill_all_fields">Пожалуйста заполните все поля!</string>
+
+    <string-array name="test_break_hints">
+        <item>Если сейчас ты заснешь, то тебе, конечно, приснится твоя мечта. Если же вместо сна ты выберешь учебу, то воплотишь свою мечту в жизнь.</item>
+        <item>Когда ты думаешь, что уже слишком поздно, на самом деле все еще рано.</item>
+        <item>Муки учебы всего лишь временные. Муки незнания — вечны</item>
+        <item>Учеба — это не время. Учеба — это усилие.</item>
+        <item>Жизнь — это не только учеба, но если ты не можешь пройти даже через эту ее часть, то на что ты вообще способен?</item>
+        <item>Напряжение и усилие могут быть удовольствием.</item>
+        <item>Только тот, кто делает все раньше, только тот, кто прилагает усилия, по-настоящему сможет насладиться своим успехом.</item>
+        <item>Во всем процветать дано не каждому. Но успех приходит только с самоусовершенствованием и решительностью.</item>
+        <item>Время летит.</item>
+        <item>Сегодняшние слюни станут завтрашними слезами.</item>
+        <item>Люди, которые вкладывают что-то в будущее, — реалисты.</item>
+        <item>Твоя зарплата прямо пропорциональна твоему уровню образования.</item>
+        <item>Сегодня никогда не повторится.</item>
+        <item>Даже сейчас твои враги жадно листают книги.</item>
+        <item>Если не попотеешь — не заработаешь.</item>
+    </string-array>
+    <string name="toast_invalid_key">Неправельный код доступа!</string>
 </resources>

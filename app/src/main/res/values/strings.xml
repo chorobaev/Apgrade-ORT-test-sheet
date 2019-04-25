@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name" translatable="false">Apgrade</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
     <string name="action_settings">Language</string>
 
     <string name="intro_btn_skip">Skip</string>
@@ -12,15 +12,15 @@
     <string name="intro_first_message">Introduction 1</string>
     <string name="intro_second_message">Introduction 2</string>
     <string name="intro_third_message">Introduction 3</string>
-    <string name="intro_fourth_message">Introduction 4</string>
+    <string name="intro_fourth_message" translatable="false">Introduction 4</string>
 
     <string name="menu_item_tests">Tests</string>
     <string name="menu_item_rating">Rating</string>
-    <string name="menu_item_admin">Admin</string>
+    <string name="menu_item_admin" translatable="false">Admin</string>
     <string name="menu_item_exit">Exit</string>
     <string name="menu_section_others">Other</string>
-    <string name="signup_msg_information">Enter the secret key in order to use this app or try one more test.</string>
-    <string name="signup_btn_signup">Sign up</string>
+    <string name="signup_msg_information">Enter the secret key in order to use this app.</string>
+    <string name="signup_btn_signup">Sign in</string>
     <string name="signup_et_hint_keyword">keyword</string>
     <string name="singup_msg_get_access_expo">Don’t you have a password?</string>
     <string name="signup_msg_get_keyword_clickable">Get access keyword</string>
@@ -30,12 +30,15 @@
     <string name="signup_et_region">Region</string>
     <string name="signup_et_school">School</string>
     <string name="signup_btn_next">Next</string>
+    <string name="signup_whatsapp_msg">I want to have a promo ORT test</string>
 
     <string name="toast_empty_key">Please enter a key.</string>
     <string name="toast_empty_entries">Please fill all fields.</string>
     <string name="toast_not_valid_key">Keyword is not exist</string>
     <string name="toast_test_result_saving_success">Your results saved</string>
     <string name="toast_test_result_saving_failed">Failure while saving the results</string>
+    <string name="toast_fill_all_fields">"Please fill all fields."</string>
+    <string name="toast_invalid_key">Invalid key</string>
 
     <string name="test_category_break_time">Break time</string>
     <string name="test_category_math1">Math 1</string>
@@ -43,19 +46,25 @@
     <string name="test_category_language1">Language 1</string>
     <string name="test_category_language2">Language 2</string>
     <string name="test_category_language3">Language 3</string>
-
-    <string name="test_msg_result">
-        Math 1: %d in %d\n
-        Math 2: %d in %d\n
-        Language 1: %d in %d\n
-        Language 2: %d in %d\n
-        Language 3: %d in %d\n
-        All: %d in %d
-    </string>
+    <string name="test_category_result">Your results</string>
+    <string name="test_msg_result" translatable="false">\n Math 1: %d in %d\n\n Math 2: %d in %d\n\n Language 1: %d in %d\n\n Language 2: %d in %d\n\n Language 3: %d in %d\n\n All: %d in %d</string>
     <string name="test_break_msg_hint">Have a rest for few minutes!</string>
     <string-array name="test_break_hints">
         <item>Have a rest for few minutes!</item>
         <item>Resting is key of the success</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
     </string-array>
 
     <string name="dialog_start_test_title">Pre-requirements</string>
@@ -72,7 +81,15 @@
     <string name="dialog_no_btn">NO</string>
     <string name="dialog_title_warning">Warning</string>
     <string name="dialog_ok_btn">OK</string>
-    <string name="dialog_choose_btn">CHOOSE</string>
+    <string name="dialog_choose_btn" translatable="false">OK</string>
     <string name="dialog_choose_lang_title" translatable="false">Выберите язык / Тилди танданыз</string>
+
+    <string name="main_msg_you_are_offline">You are offline \nTry again</string>
+    <string name="nav_header_left_attempts_msg">Your left attempts is %d</string>
+    <string name="test_result_column_chapter">Chapter:</string>
+    <string name="test_result_column_marks">Marks:</string>
+    <string name="test_category_all">All</string>
+
+    <string name="test_header_variants" translatable="false">"А     Б     В     Г     Д"</string>
 
 </resources>

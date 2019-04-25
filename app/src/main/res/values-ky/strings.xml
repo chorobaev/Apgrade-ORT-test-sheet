@@ -1,9 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Apgrade</string>
     <string name="dialog_test_not_available_msg">Бул тестти тапшыра албайсыз.</string>
     <string name="dialog_yes_btn">ООБА</string>
     <string name="dialog_ok_btn">МАКУЛ</string>
     <string name="dialog_no_btn">ЖОК</string>
+    <string name="menu_item_tests">Тесттер</string>
+    <string name="menu_item_rating">Жетишкендиктер</string>
+    <string name="menu_item_exit">Чыгуу</string>
+    <string name="menu_section_others">Башка</string>
+    <string name="signup_msg_information">Системага кирүү үчүн сыр сөздү жазыңыз</string>
+    <string name="signup_btn_signup">Кирүү</string>
+    <string name="test_category_math1">Математика 1</string>
+    <string name="test_category_math2">Математика 2</string>
+    <string name="test_category_language1">Окшоштуктар жана сүйлөмдөрдү толуктоо</string>
+    <string name="test_category_language2">Окуу жана түшүнүү</string>
+    <string name="test_category_language3">Грамматика</string>
+    <string name="action_settings">Тилди алмаштыруу</string>
+    <string name="dialog_title_warning">Көңүл буруңуз</string>
+    <string name="intro_btn_skip">Түшүндүм</string>
+    <string name="intro_btn_done">ОК</string>
+    <string name="signup_et_hint_keyword">Сыр сөз</string>
+    <string name="singup_msg_get_access_expo">Сыр сөзүңүз жокпу?</string>
+    <string name="signup_msg_get_keyword_clickable">Сыр сөздү алуу</string>
+    <string name="signup_msg_try_free">Акысыз колдонуу</string>
+    <string name="signup_et_surename">Фамилия</string>
+    <string name="signup_et_name">Аты</string>
+    <string name="signup_et_region">Район</string>
+    <string name="signup_et_school">Мектеп</string>
+    <string name="signup_btn_next">Кирүү</string>
+    <string name="toast_empty_key">Сураныч, сыр сөздү жазыңыз!</string>
+    <string name="toast_empty_entries">Сураныч, бардык жерлерди толтуруңуз!</string>
+    <string name="toast_not_valid_key">Мындай сыр сөз жок!</string>
+    <string name="toast_test_result_saving_success">Сиздин тест жыйынтыгыңыз сакталды.</string>
+    <string name="toast_test_result_saving_failed">Тест жыйынтыгын сактоодо катачылык.</string>
+    <string name="test_category_break_time">Танапис</string>
+    <string name="test_category_result">Тест жыйынтыгы</string>
+    <string name="test_break_msg_hint">Бир аз эс алып алыңыз…</string>
+    <string name="dialog_start_test_title">Тестти баштоодон мурун:</string>
+    <string name="dialog_start_test_msg">Сынамык тестти тапшыруу үчүн тесттин суроолору жана чыныгы ЖРТнын эрежесине ылайык 3 саат 35 мүнөт керектелет. Баштоого макулсузбу?</string>
+    <string name="dialog_leave_test_msg">Тесттен чыксаңыз баардык белгилөөр өчөт. Чындап тесттен чыккыңыз келкби?</string>
+    <string name="dialog_finish_current_mini_test_msg">Чыныгы тестте кийнки бөлүмгө убактысынан мурда өтүүгө болбойт. Чындап өткүңүз келеби?</string>
+    <string name="dialog_start_next_test_msg">Кийинки бөлүмдү баштайсызбы?</string>
+    <string name="dialog_progress_logging_in_msg">Күтө туруңуз…</string>
+    <string name="main_msg_you_are_offline">Интернет байланышы жок</string>
+    <string name="nav_header_left_attempts_msg">Тест тапшыруу мүмкүнчүлүгүңүз: %d</string>
+    <string name="signup_whatsapp_msg">Саламатсызбы. Мен сынамык тест тапшырайын дегем.</string>
+    <string name="intro_second_message">Досторуң менен бирге даярдан, атандаш!</string>
+    <string name="test_result_column_chapter">Бөлүм:</string>
+    <string name="test_result_column_marks">Балл:</string>
+    <string name="test_category_all">Жалпы</string>
+    <string name="intro_first_message">Жалпы республикалык тестти каалаган учурда, каалаган жерде тапшырып көр</string>
+    <string name="intro_third_message">ЖРТны мыкты тапшырып, кыялдарыңды орундат!</string>
+
+    <string-array name="test_break_hints">
+        <item>Эгер сен азыр уктап кетсең, анда сага, албетте, кыялың түшүңө кирет. Эгерде, уйкунун ордуна, сен окууну тандасаң, анда сен кыялыңды ишке ашырасың.</item>
+        <item>Сен өтө кеч деп ойлогонуң менен чындыгында дагы эрте.</item>
+        <item>Окуу азабы, болгону убактылуу. Билимсиздин азабы – түбөлүк.</item>
+        <item>Билим – ал убакыт эмес. Билим – ал күч.</item>
+        <item>Өмүр – ал окуу гана эмес, бирок эгер өмүрдүн ушул бөлүгүнөн да өтө албасаң анда эмнеге жөндөмүң бар?</item>
+        <item>Күч менен кубат салып окугандан ырахат алышың мүмкүн.</item>
+        <item>Болгону эрте жасаган, болгону күч салган адам гана өзүнүн жетиштиги менен өзгөчө кубана алат.</item>
+        <item>Барына үлгүрүү, ар кимдин колунан келе бербейт. Бирок, ийгилик, өзүн жетилдирүү менен тайманбастык менен бирге келет.</item>
+        <item>Убакыт зымырап барат.</item>
+        <item>Бүгүнкү шилекейлериң, эртеңки көз жаштарың болот.</item>
+        <item>Болочокко бир нерсе сиңирген адамдар – реалисттер.</item>
+        <item>Сенин айлыгың, сенин билимиңдин деңгээли менен теңме-тең.</item>
+        <item>Бүгүн эч качан кайталанбайт.</item>
+        <item>Керек болсо азыр сенин жоолоруң, китептин беттерин ырахаттана ачып жатат.</item>
+        <item>Тердебесең, киреше таппайсың.</item>
+    </string-array>
+    <string name="toast_fill_all_fields">Сураныч бардыгын толтуруңуз!</string>
+    <string name="toast_invalid_key">Сыр сөзүңүз туура эмес!</string>
 
 </resources>

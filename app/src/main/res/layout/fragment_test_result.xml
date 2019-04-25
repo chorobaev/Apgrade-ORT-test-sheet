@@ -1,18 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tv_test_result"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_user_full_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/test_msg_result"
-        android:textSize="20sp"
-        android:textColor="@color/colorBlack"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+        style="@style/AppTheme.ResultText"
+        android:textStyle="bold"
+        tools:text="Balanchaev Tukuncho"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <GridLayout
+        android:padding="@dimen/activity_horizontal_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/test_result_column_chapter"
+            style="@style/AppTheme.ResultText"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/test_category_math1"
+            style="@style/AppTheme.ResultText"
+            android:layout_row="1"
+            android:layout_column="0" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/test_category_math2"
+            style="@style/AppTheme.ResultText"
+            android:layout_row="2"
+            android:layout_column="0" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/test_category_language1"
+            style="@style/AppTheme.ResultText"
+            android:layout_row="3"
+            android:layout_column="0"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/test_category_language2"
+            style="@style/AppTheme.ResultText"
+            android:layout_row="4"
+            android:layout_column="0"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/test_category_language3"
+            style="@style/AppTheme.ResultText"
+            android:layout_row="5"
+            android:layout_column="0"/>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/test_category_all"
+            style="@style/AppTheme.ResultText"
+            android:textStyle="bold"
+            android:layout_row="6"
+            android:layout_column="0"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/test_result_column_marks"
+            style="@style/AppTheme.ResultText"
+            android:layout_gravity="end"
+            android:layout_row="0"
+            android:layout_column="1"/>
+
+        <TextView
+            android:id="@+id/tv_result_math1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="100"
+            android:layout_gravity="end"
+            style="@style/AppTheme.ResultText"
+            android:layout_row="1"
+            android:layout_column="1" />
+
+        <TextView
+            android:id="@+id/tv_result_math2"
+            android:layout_width="wrap_content"
+            android:layout_gravity="end"
+            android:layout_height="wrap_content"
+            tools:text="100"
+            style="@style/AppTheme.ResultText"
+            android:layout_row="2"
+            android:layout_column="1" />
+
+        <TextView
+            android:id="@+id/tv_result_language1"
+            android:layout_width="wrap_content"
+            android:layout_gravity="end"
+            android:layout_height="wrap_content"
+            tools:text="100"
+            style="@style/AppTheme.ResultText"
+            android:layout_row="3"
+            android:layout_column="1"/>
+
+        <TextView
+            android:id="@+id/tv_result_language2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="100"
+            android:layout_gravity="end"
+            style="@style/AppTheme.ResultText"
+            android:layout_row="4"
+            android:layout_column="1"/>
+
+        <TextView
+            android:id="@+id/tv_result_language3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="100"
+            android:layout_gravity="end"
+            style="@style/AppTheme.ResultText"
+            android:layout_row="5"
+            android:layout_column="1"/>
+
+        <TextView
+            android:id="@+id/tv_result_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="100"
+            android:layout_gravity="end"
+            style="@style/AppTheme.ResultText"
+            android:textStyle="bold"
+            android:layout_row="6"
+            android:layout_column="1"/>
+
+    </GridLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:text="@string/test_break_msg_hint"
         android:textSize="22sp"
-        android:textColor="@color/colorBlack"
+        android:gravity="center"
+        android:textColor="#333"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
 

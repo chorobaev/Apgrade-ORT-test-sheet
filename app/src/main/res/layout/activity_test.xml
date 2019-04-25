@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/appIntro2BottomBarHeight"
         android:background="@color/colorAppMain"
-        android:gravity="top">
+        android:gravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,18 +21,17 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:layout_gravity="top"
+                android:layout_gravity="center"
                 android:id="@+id/tv_test_category"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="20sp"
+                android:layout_weight="3"
+                android:textSize="18sp"
                 android:textColor="@color/colorWhite"
                 android:textStyle="bold"
                 tools:text="Math 1"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:layout_marginTop="24dp"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"/>
@@ -44,7 +43,7 @@
                 android:layout_weight="1"
                 android:textColor="@color/colorWhite"
                 android:layout_gravity="top"
-                android:textSize="28sp"
+                android:textSize="20sp"
                 android:text="30:00"
                 android:gravity="end"
                 android:layout_marginTop="24dp"
