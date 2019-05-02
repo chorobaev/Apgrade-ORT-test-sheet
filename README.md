@@ -12,7 +12,7 @@ General Republic testing.
 <div style="display:inline-flex">  
     <img src="https://raw.githubusercontent.com/chorobaev/Apgrade-ORT-Test-sheet/master/images/Screenshot_2019-04-24-15-40-39-557_com.example.apgrate.png" height="450px"/>  
     <img src="https://raw.githubusercontent.com/chorobaev/Apgrade-ORT-Test-sheet/master/images/Screenshot_2019-04-24-16-33-30-513_com.example.apgrate.png" height="450px" />
-</div>https://raw.githubusercontent.com/chorobaev/Apgrade-ORT-Test-sheet/master/images/Screenshot_2019-04-24-15-40-39-557_com.example.apgrate.png
+</div>
 
 # Background
 
