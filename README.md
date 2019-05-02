@@ -4,18 +4,23 @@ Apgrade is an app where people can try Republic-wide testing (ru. ОРТ).
 It is designed to provide easy and simple way to have trial 
 Republic-wide testing.
 
-![screanshot](https://gitlab.com/nurbolandroid/apgratekg/blob/master/images/Screenshot_2019-04-24-16-41-32-081_com.example.apgrate.png)
+<div style="display:inline-flex">
+    <img src="https://gitlab.com/nurbolandroid/apgratekg/raw/master/images/Screenshot_2019-04-24-16-41-32-081_com.example.apgrate.png" height="450px" alt="first_screen.jpg"/>
+    <img src="https://gitlab.com/nurbolandroid/apgratekg/raw/master/images/Screenshot_2019-04-24-16-34-13-792_com.example.apgrate.png" height="450px" alt="first_screen.jpg"/>
+    <img src="https://gitlab.com/nurbolandroid/apgratekg/raw/master/images/Screenshot_2019-04-24-15-40-39-557_com.example.apgrate.png" height="450px" alt="first_screen.jpg"/>
+    <img src="https://gitlab.com/nurbolandroid/apgratekg/raw/master/images/Screenshot_2019-04-24-16-33-30-513_com.example.apgrate.png" height="450px" alt="first_screen.jpg"/>
+</div>
 
 # Background
 
-Nowadays RWT is a key to go an university in Kyrgyzstan. But there is not 
+RWT is a key to go an university in Kyrgyzstan. But there is not 
 enough sources to prepare for it. Especially it is  very difficult to have trial 
 RWT test. This problem can be solved by using an availability of 
 smartphones and the Internet.
 
 # Aim of the project
 
-Aim of this project is to give high school students opportunity to try RWT 
+Aim of this project is to give high school students opportunities to try RWT 
 anywhere and any time. Only requirements are android smartphone and 
 Internet connection.
 
@@ -31,6 +36,6 @@ and give to students opportunities to try it cheep and easily.
 
 This poject uses:
 
-    - [Firebase](https://firebase.google.com) online database
-    - [AppItro](https://github.com/AppIntro/AppIntro) open sourc library
+- [Firebase](https://firebase.google.com) online database
+- [AppItro](https://github.com/AppIntro/AppIntro) open sourc library
 
